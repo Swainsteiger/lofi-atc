@@ -1,0 +1,1576 @@
+[
+ {
+  "icao": "KLAS",
+  "name": "Harry Reid International Airport",
+  "city": "Las Vegas",
+  "feeds": [
+   {
+    "name": "KLAS Tower (Both)",
+    "url": "https://d.liveatc.net/klas4_twr"
+   },
+   {
+    "name": "KLAS Tower (Rwys 01/19)",
+    "url": "https://d.liveatc.net/klas4_twr_0119"
+   },
+   {
+    "name": "KLAS Tower (Rwys 08/26)",
+    "url": "https://d.liveatc.net/klas4_twr_0826"
+   },
+   {
+    "name": "KLAS Approach (Final)",
+    "url": "https://d.liveatc.net/klas5_app_final"
+   },
+   {
+    "name": "KLAS Approach (NE)",
+    "url": "https://d.liveatc.net/klas4_app_ne"
+   },
+   {
+    "name": "KLAS Approach (NW)",
+    "url": "https://d.liveatc.net/klas4_app_nw"
+   },
+   {
+    "name": "KLAS Approach (SE)",
+    "url": "https://d.liveatc.net/klas4_app_se"
+   },
+   {
+    "name": "KLAS Approach (SW)",
+    "url": "https://d.liveatc.net/klas4_app_sw"
+   },
+   {
+    "name": "KLAS Approach (VFR)",
+    "url": "https://d.liveatc.net/klas4_app_vfr"
+   },
+   {
+    "name": "KLAS Departure (Rwys 01/08)",
+    "url": "https://d.liveatc.net/klas5_dep_0108"
+   },
+   {
+    "name": "KLAS Departure (Rwys 19/26)",
+    "url": "https://d.liveatc.net/klas4_dep_1926"
+   },
+   {
+    "name": "KLAS Ground (East)",
+    "url": "https://d.liveatc.net/klas4_gnd_e"
+   },
+   {
+    "name": "KLAS Ground (East/West)",
+    "url": "https://d.liveatc.net/klas4_gnd"
+   },
+   {
+    "name": "KLAS Ground (West)",
+    "url": "https://d.liveatc.net/klas4_gnd_w"
+   },
+   {
+    "name": "KLAS Clearance Delivery",
+    "url": "https://d.liveatc.net/klas4_del"
+   },
+   {
+    "name": "KLAS Ramp Control",
+    "url": "https://d.liveatc.net/klas4_ramp"
+   },
+   {
+    "name": "ZLA Sector 16 (Low/High)",
+    "url": "https://d.liveatc.net/klas4_zla16"
+   },
+   {
+    "name": "ZLA Sector 34 (High)",
+    "url": "https://d.liveatc.net/klas5_zla34"
+   },
+   {
+    "name": "KLAS Helicopter Control",
+    "url": "https://d.liveatc.net/klas4_heli"
+   },
+   {
+    "name": "KLAS Tower (Emergency/Discrete)",
+    "url": "https://d.liveatc.net/klas4_twr_emerg"
+   },
+   {
+    "name": "KLAS ATIS",
+    "url": "https://d.liveatc.net/klas5_atis"
+   }
+  ],
+  "tz": "America/Los_Angeles",
+  "lat": 36.084,
+  "lon": -115.154
+ },
+ {
+  "icao": "KSJC",
+  "name": "Norman Y. Mineta San Jose International Airport",
+  "city": "San Jose",
+  "feeds": [
+   {
+    "name": "KSJC Tower #1",
+    "url": "https://d.liveatc.net/ksjc6_twr"
+   },
+   {
+    "name": "KSJC Tower #2",
+    "url": "https://d.liveatc.net/ksjc_twr2"
+   },
+   {
+    "name": "KSJC NORCAL Approach #1",
+    "url": "https://d.liveatc.net/ksjc_app"
+   },
+   {
+    "name": "KSJC NORCAL Approach #2",
+    "url": "https://d.liveatc.net/ksjc_app2"
+   },
+   {
+    "name": "KSJC NORCAL Departure",
+    "url": "https://d.liveatc.net/ksjc_dep"
+   },
+   {
+    "name": "KSJC Ground",
+    "url": "https://d.liveatc.net/ksjc6_gnd"
+   },
+   {
+    "name": "KSJC Del/Gnd/Misc",
+    "url": "https://d.liveatc.net/ksjc_del_gnd"
+   },
+   {
+    "name": "KSJC D-ATIS",
+    "url": "https://d.liveatc.net/ksjc_atis"
+   }
+  ],
+  "tz": "America/Los_Angeles",
+  "lat": 37.363,
+  "lon": -121.929
+ },
+ {
+  "icao": "KSFO",
+  "name": "San Francisco International Airport",
+  "city": "San Francisco",
+  "feeds": [
+   {
+    "name": "KSFO Ground/Tower",
+    "url": "https://d.liveatc.net/ksfo_gnd_twr"
+   },
+   {
+    "name": "KSFO Tower",
+    "url": "https://d.liveatc.net/ksfo_twr"
+   },
+   {
+    "name": "KSFO Tower/Ground",
+    "url": "https://d.liveatc.net/ksfo_twr2"
+   },
+   {
+    "name": "KSFO Del/Gnd (Alt)/Twr (Alt)",
+    "url": "https://d.liveatc.net/ksfo_gnd2"
+   },
+   {
+    "name": "KSFO NORCAL App 28L/R",
+    "url": "https://d.liveatc.net/ksfo_app2_l"
+   },
+   {
+    "name": "KSFO NORCAL App 28L/R + BSR/MOD STARs",
+    "url": "https://d.liveatc.net/ksfo_app2"
+   },
+   {
+    "name": "NORCAL Departure (KSFO/KOAK)",
+    "url": "https://d.liveatc.net/koak_dep"
+   },
+   {
+    "name": "KSFO Dep 120.9/127.0",
+    "url": "https://d.liveatc.net/ksfo_dep1"
+   },
+   {
+    "name": "KSFO Dep 135.1",
+    "url": "https://d.liveatc.net/ksfo_dep2"
+   },
+   {
+    "name": "KSFO Ground",
+    "url": "https://d.liveatc.net/ksfo_gnd"
+   },
+   {
+    "name": "KSFO NORCAL BSR2/MOD2 Arrivals",
+    "url": "https://d.liveatc.net/ksfo_app2_r"
+   },
+   {
+    "name": "KSFO Ramp",
+    "url": "https://d.liveatc.net/ksfo_ramp"
+   },
+   {
+    "name": "ZOA Oakland Center (35)",
+    "url": "https://d.liveatc.net/zoa_35"
+   },
+   {
+    "name": "ZOA Oakland Center (35/40/41)",
+    "url": "https://d.liveatc.net/zoa_sfo"
+   },
+   {
+    "name": "KSFO D-ATIS",
+    "url": "https://d.liveatc.net/ksfo_atis"
+   }
+  ],
+  "tz": "America/Los_Angeles",
+  "lat": 37.619,
+  "lon": -122.375
+ },
+ {
+  "icao": "KOAK",
+  "name": "Metropolitan Oakland International Airport",
+  "city": "Oakland",
+  "feeds": [
+   {
+    "name": "KOAK Del/Gnd/Twr",
+    "url": "https://d.liveatc.net/koak"
+   },
+   {
+    "name": "NORCAL Approach (KOAK)",
+    "url": "https://d.liveatc.net/koak_app"
+   },
+   {
+    "name": "NORCAL Departure (KSFO/KOAK)",
+    "url": "https://d.liveatc.net/koak_dep"
+   }
+  ],
+  "tz": "America/Los_Angeles",
+  "lat": 37.721,
+  "lon": -122.221
+ },
+ {
+  "icao": "CYYZ",
+  "name": "Lester B. Pearson International Airport",
+  "city": "Toronto",
+  "feeds": [
+   {
+    "name": "CYYZ Tower",
+    "url": "https://d.liveatc.net/cyyz7"
+   },
+   {
+    "name": "CYYZ Departure",
+    "url": "https://d.liveatc.net/cyyz8"
+   },
+   {
+    "name": "CYYZ Ground",
+    "url": "https://d.liveatc.net/cyyz5"
+   },
+   {
+    "name": "CYYZ Ground 121.65",
+    "url": "https://d.liveatc.net/cyyz_gnd_121650"
+   },
+   {
+    "name": "CYYZ Ground 121.9",
+    "url": "https://d.liveatc.net/cyyz_gnd_121900"
+   },
+   {
+    "name": "CYYZ Apron",
+    "url": "https://d.liveatc.net/cyyz9"
+   },
+   {
+    "name": "CYYZ Apron (Backup)",
+    "url": "https://d.liveatc.net/cyyz_apr_bu"
+   },
+   {
+    "name": "CYYZ Apron (North)",
+    "url": "https://d.liveatc.net/cyyz_apr_n"
+   },
+   {
+    "name": "CYYZ Apron (South)",
+    "url": "https://d.liveatc.net/cyyz_apr_s"
+   },
+   {
+    "name": "CYYZ Apron Coordinator",
+    "url": "https://d.liveatc.net/cyyz_apr_coord"
+   },
+   {
+    "name": "CYYZ Arrival",
+    "url": "https://d.liveatc.net/cyyz6"
+   },
+   {
+    "name": "CYYZ Clearance Delivery",
+    "url": "https://d.liveatc.net/cyyz4"
+   },
+   {
+    "name": "Toronto Center (Barrie)",
+    "url": "https://d.liveatc.net/czyz_yyz2_barrie"
+   },
+   {
+    "name": "Toronto Center (East Satellite)",
+    "url": "https://d.liveatc.net/czyz_yyz2_east_sat"
+   },
+   {
+    "name": "Toronto Center (Hamilton) #1",
+    "url": "https://d.liveatc.net/czyz_yyz2_ham"
+   },
+   {
+    "name": "Toronto Center (Oakville)",
+    "url": "https://d.liveatc.net/czyz_yyz2_oak"
+   },
+   {
+    "name": "CYYZ Discrete/Emergency",
+    "url": "https://d.liveatc.net/cyyz_emergency"
+   },
+   {
+    "name": "CYYZ ATIS",
+    "url": "https://d.liveatc.net/cyyz3"
+   }
+  ],
+  "tz": "America/Toronto",
+  "lat": 43.677,
+  "lon": -79.631
+ },
+ {
+  "icao": "EHAM",
+  "name": "Schiphol International Airport",
+  "city": "Amsterdam",
+  "feeds": [
+   {
+    "name": "EHAM Tower (Rwy 06/24)",
+    "url": "https://d.liveatc.net/eham_twr_0624"
+   },
+   {
+    "name": "EHAM Tower (Rwy 18C/36C)",
+    "url": "https://d.liveatc.net/eham_twr_18c36c"
+   },
+   {
+    "name": "EHAM Tower (Rwy 18R/36L)",
+    "url": "https://d.liveatc.net/eham_twr_18r36l"
+   },
+   {
+    "name": "EHAM Tower (Rwys 04/22 18L/36R)",
+    "url": "https://d.liveatc.net/eham_twr_042218l36r"
+   },
+   {
+    "name": "EHAM App/Dep (118.080)",
+    "url": "https://d.liveatc.net/eham_app_118080"
+   },
+   {
+    "name": "EHAM App/Dep (119.055)",
+    "url": "https://d.liveatc.net/eham_app_119055"
+   },
+   {
+    "name": "EHAM App/Dep (121.205)",
+    "url": "https://d.liveatc.net/eham_app_121205"
+   },
+   {
+    "name": "EHAM Ground (Rwy 06/24)",
+    "url": "https://d.liveatc.net/eham_gnd_0624"
+   },
+   {
+    "name": "EHAM Ground (Rwy 18C/36C)",
+    "url": "https://d.liveatc.net/eham_gnd_18c36c"
+   },
+   {
+    "name": "EHAM Ground (Rwy 18R)",
+    "url": "https://d.liveatc.net/eham_gnd_18r"
+   },
+   {
+    "name": "EHAM Ground (Rwys 04/22 09/27 18L/36R)",
+    "url": "https://d.liveatc.net/eham_gnd_0422092718l36r"
+   },
+   {
+    "name": "Dutch Mil Radar",
+    "url": "https://d.liveatc.net/ehle_dutchmil"
+   },
+   {
+    "name": "EHAA Radar ARTIP",
+    "url": "https://d.liveatc.net/eham_rdr_120555"
+   },
+   {
+    "name": "EHAA Radar East Outbound",
+    "url": "https://d.liveatc.net/eham_rdr_e_out"
+   },
+   {
+    "name": "EHAA Radar Northwest",
+    "url": "https://d.liveatc.net/eham_rdr_nw"
+   },
+   {
+    "name": "EHAA Radar RIVER",
+    "url": "https://d.liveatc.net/eham_rdr_127780"
+   },
+   {
+    "name": "EHAA Radar SUGOL",
+    "url": "https://d.liveatc.net/eham_rdr_118805"
+   },
+   {
+    "name": "EHAA Radar South",
+    "url": "https://d.liveatc.net/eham_rdr_s"
+   },
+   {
+    "name": "EHAA Radar Southwest",
+    "url": "https://d.liveatc.net/eham_rdr_sw"
+   },
+   {
+    "name": "EHAM Apron Control (North)",
+    "url": "https://d.liveatc.net/eham_apron_n"
+   },
+   {
+    "name": "EHAM Apron Control (South)",
+    "url": "https://d.liveatc.net/eham_apron_s"
+   },
+   {
+    "name": "EHAM Arrival",
+    "url": "https://d.liveatc.net/eham_arr_126680"
+   },
+   {
+    "name": "EHAM Arrival",
+    "url": "https://d.liveatc.net/eham_arr_118405"
+   },
+   {
+    "name": "EHAM Clearance Delivery",
+    "url": "https://d.liveatc.net/eham_del"
+   },
+   {
+    "name": "EHAM Info North Sea (North)",
+    "url": "https://d.liveatc.net/eham_info_n"
+   },
+   {
+    "name": "EHAM Info North Sea (Over Land)",
+    "url": "https://d.liveatc.net/eham_info_land"
+   },
+   {
+    "name": "EHAM Info North Sea (South)",
+    "url": "https://d.liveatc.net/eham_info_s"
+   },
+   {
+    "name": "EHAM Outbound Planner",
+    "url": "https://d.liveatc.net/eham_planner"
+   },
+   {
+    "name": "Maastricht Radar (Delta High)",
+    "url": "https://d.liveatc.net/eham_muac_132085"
+   },
+   {
+    "name": "Maastricht Radar (Delta Low)",
+    "url": "https://d.liveatc.net/eham_muac_135960"
+   },
+   {
+    "name": "Maastricht Radar (Delta Medium)",
+    "url": "https://d.liveatc.net/eham_muac_135510"
+   },
+   {
+    "name": "EHAM Emergency/Guard",
+    "url": "https://d.liveatc.net/eham_guard"
+   },
+   {
+    "name": "EHAM ATIS (Arrival)",
+    "url": "https://d.liveatc.net/eham_atis_arr"
+   },
+   {
+    "name": "EHAM ATIS (Departure)",
+    "url": "https://d.liveatc.net/eham_atis_dep"
+   }
+  ],
+  "tz": "Europe/Amsterdam",
+  "lat": 52.31,
+  "lon": 4.768
+ },
+ {
+  "icao": "KATL",
+  "name": "Hartsfield - Jackson Atlanta International Airport",
+  "city": "Atlanta",
+  "feeds": [
+   {
+    "name": "KATL Tower",
+    "url": "https://d.liveatc.net/katl_twr"
+   },
+   {
+    "name": "KATL Tower (Rwy 10/28)",
+    "url": "https://d.liveatc.net/katl_twr_1028"
+   },
+   {
+    "name": "KATL Tower (Rwy 8L/26R)",
+    "url": "https://d.liveatc.net/katl_twr_08l26r"
+   },
+   {
+    "name": "KATL Tower (Rwy 8R/26L)",
+    "url": "https://d.liveatc.net/katl_twr_08r26l"
+   },
+   {
+    "name": "KATL Tower (Rwy 8R/8L/26L/26R)",
+    "url": "https://d.liveatc.net/katl_twr_08"
+   },
+   {
+    "name": "KATL Tower (Rwy 9L/27R)",
+    "url": "https://d.liveatc.net/katl_twr_09l27r"
+   },
+   {
+    "name": "KATL Tower (Rwy 9R/27L)",
+    "url": "https://d.liveatc.net/katl_twr_09r27l"
+   },
+   {
+    "name": "KATL Tower (Rwy 9R/9L/27L/27R)",
+    "url": "https://d.liveatc.net/katl_twr_09"
+   },
+   {
+    "name": "Atlanta Approach (NW Satellite)",
+    "url": "https://d.liveatc.net/kryy1_atlapp_121000"
+   },
+   {
+    "name": "Atlanta Approach (TAR NW)",
+    "url": "https://d.liveatc.net/kryy1_atlapp_128000"
+   },
+   {
+    "name": "KATL Final Approach 26R/8L",
+    "url": "https://d.liveatc.net/katl_app_fin_v"
+   },
+   {
+    "name": "KATL Final Approach 27L/9R",
+    "url": "https://d.liveatc.net/katl_app_fin_o"
+   },
+   {
+    "name": "KATL Final Approach 28/10",
+    "url": "https://d.liveatc.net/katl_app_fin_a"
+   },
+   {
+    "name": "KATL Departure (North)",
+    "url": "https://d.liveatc.net/katl_dep_n"
+   },
+   {
+    "name": "KATL Departure (South)",
+    "url": "https://d.liveatc.net/katl_dep_s"
+   },
+   {
+    "name": "ZTL Altanta Center (Sector 38 N Dep Low)",
+    "url": "https://d.liveatc.net/kczl1_ztl_133100"
+   },
+   {
+    "name": "KATL Ground",
+    "url": "https://d.liveatc.net/katl_gnd"
+   },
+   {
+    "name": "KATL Ground (Rwy 10/28)",
+    "url": "https://d.liveatc.net/katl_gnd_1028"
+   },
+   {
+    "name": "KATL Ground (Rwys 8/26)",
+    "url": "https://d.liveatc.net/katl_gnd_0826"
+   },
+   {
+    "name": "KATL Ground (Rwys 9/27)",
+    "url": "https://d.liveatc.net/katl_gnd_0927"
+   },
+   {
+    "name": "KATL Clearance Delivery",
+    "url": "https://d.liveatc.net/katl_del"
+   },
+   {
+    "name": "KATL Company Channels",
+    "url": "https://d.liveatc.net/katl_co"
+   },
+   {
+    "name": "KATL Ramp",
+    "url": "https://d.liveatc.net/katl_ramp"
+   },
+   {
+    "name": "KATL Traffic Management",
+    "url": "https://d.liveatc.net/katl_tmu"
+   },
+   {
+    "name": "ZTL Altanta Center (Sector 18 Commerce Low)",
+    "url": "https://d.liveatc.net/kczl1_ztl_134800"
+   },
+   {
+    "name": "ZTL Altanta Center (Sector 25 Black Jack Mtn Low)",
+    "url": "https://d.liveatc.net/kczl1_ztl_127050"
+   },
+   {
+    "name": "ZTL Altanta Center (Sector 49 LOGEN Low)",
+    "url": "https://d.liveatc.net/kczl1_ztl_121350"
+   },
+   {
+    "name": "ZTL Atlanta Center (Macon High)",
+    "url": "https://d.liveatc.net/katl_ztl22"
+   },
+   {
+    "name": "ZTL Atlanta Center (Sector 18)",
+    "url": "https://d.liveatc.net/kgvl1_ztl18"
+   },
+   {
+    "name": "KATL ATIS (Arrival)",
+    "url": "https://d.liveatc.net/katl_atis_arr"
+   },
+   {
+    "name": "KATL ATIS (Departure)",
+    "url": "https://d.liveatc.net/katl_atis_dep"
+   }
+  ],
+  "tz": "America/New_York",
+  "lat": 33.64,
+  "lon": -84.427
+ },
+ {
+  "icao": "KBOS",
+  "name": "General Edward Lawrence Logan International Airport",
+  "city": "Boston",
+  "feeds": [
+   {
+    "name": "KBOS Tower",
+    "url": "https://d.liveatc.net/kbos_twr"
+   },
+   {
+    "name": "KBOS App (Final Vector)",
+    "url": "https://d.liveatc.net/kbos_final"
+   },
+   {
+    "name": "KBOS App (North/Rockport)",
+    "url": "https://d.liveatc.net/kbos_app_north"
+   },
+   {
+    "name": "KBOS App (South/Plymouth)",
+    "url": "https://d.liveatc.net/kbos_app_south"
+   },
+   {
+    "name": "KBOS Dep (ID/Lincoln)",
+    "url": "https://d.liveatc.net/kbos_dep"
+   },
+   {
+    "name": "KBOS Del/Gnd",
+    "url": "https://d.liveatc.net/kbos_gnd"
+   },
+   {
+    "name": "KBOS Area Heli/Air-to-Air",
+    "url": "https://d.liveatc.net/kbos_heli"
+   },
+   {
+    "name": "KBOS Flight Watch (FSS)",
+    "url": "https://d.liveatc.net/kbos_murp_fs"
+   },
+   {
+    "name": "KBOS Ramp",
+    "url": "https://d.liveatc.net/kbos_ramp"
+   },
+   {
+    "name": "ZBW Boston Center (ALB22)",
+    "url": "https://d.liveatc.net/kalb1_zbw_alb22"
+   },
+   {
+    "name": "ZBW Boston Center (ALB22/ATH38/CAM39)",
+    "url": "https://d.liveatc.net/zbw_cam"
+   },
+   {
+    "name": "ZBW Boston Center (ATH38 High/CT Site)",
+    "url": "https://d.liveatc.net/kbdl2_zbw_ath_hi"
+   },
+   {
+    "name": "ZBW Boston Center (ATH38/NY Site)",
+    "url": "https://d.liveatc.net/kalb1_zbw_ath38"
+   },
+   {
+    "name": "ZBW Boston Center (BOS46 High) #1",
+    "url": "https://d.liveatc.net/zbw_bos46_nh"
+   },
+   {
+    "name": "ZBW Boston Center (BOS46 High) #2",
+    "url": "https://d.liveatc.net/kbdl2_zbw_bos_hi"
+   },
+   {
+    "name": "ZBW Boston Center (BOS47 Low)",
+    "url": "https://d.liveatc.net/kbdl2_zbw_bos_low"
+   },
+   {
+    "name": "ZBW Boston Center (BOSOX Spare)",
+    "url": "https://d.liveatc.net/zbw_murp_bos"
+   },
+   {
+    "name": "ZBW Boston Center (CAM39)",
+    "url": "https://d.liveatc.net/kalb1_zbw_cam39"
+   },
+   {
+    "name": "ZBW Boston Center (CANAN21/BOS46)",
+    "url": "https://d.liveatc.net/zbw_can21_bos46"
+   },
+   {
+    "name": "ZBW Boston Center (CON37)",
+    "url": "https://d.liveatc.net/zbw_con"
+   },
+   {
+    "name": "ZBW Boston Center (GDM36)",
+    "url": "https://d.liveatc.net/zbw_gdm"
+   },
+   {
+    "name": "ZBW Boston Center (GDM36/CON37) #1",
+    "url": "https://d.liveatc.net/zbw_gdm_con"
+   },
+   {
+    "name": "ZBW Boston Center (GDM36/CON37) #3",
+    "url": "https://d.liveatc.net/zbw_murp_gdm2"
+   },
+   {
+    "name": "ZBW Boston Center (IGN20)",
+    "url": "https://d.liveatc.net/zbw20_hvn"
+   },
+   {
+    "name": "ZBW Boston Center (MPV52/PLB53) #1",
+    "url": "https://d.liveatc.net/zbw_mpv"
+   },
+   {
+    "name": "ZBW Boston Center (MPV52/PLB53) #2",
+    "url": "https://d.liveatc.net/zbw_mpv2"
+   },
+   {
+    "name": "ZBW Boston Center (PVD34 Low)",
+    "url": "https://d.liveatc.net/kbdl2_zbw_pvd_low"
+   },
+   {
+    "name": "ZBW Boston Center (PWL06)",
+    "url": "https://d.liveatc.net/zbw06_hvn"
+   },
+   {
+    "name": "ZBW Boston Center (RKA10)",
+    "url": "https://d.liveatc.net/zbw_remsen"
+   },
+   {
+    "name": "ZBW Boston Center (UCA09/ART08)",
+    "url": "https://d.liveatc.net/zbw_turin"
+   }
+  ],
+  "tz": "America/New_York",
+  "lat": 42.364,
+  "lon": -71.005
+ },
+ {
+  "icao": "KDEN",
+  "name": "Denver International Airport",
+  "city": "Denver",
+  "feeds": [
+   {
+    "name": "KDEN Tower",
+    "url": "https://d.liveatc.net/kden1_3"
+   },
+   {
+    "name": "KDEN Tower East 17R/25L",
+    "url": "https://d.liveatc.net/kden1_twr_east"
+   },
+   {
+    "name": "KDEN Tower West Rwy 07/25",
+    "url": "https://d.liveatc.net/kden1_twr_west"
+   },
+   {
+    "name": "KDEN Approach",
+    "url": "https://d.liveatc.net/kden1_1"
+   },
+   {
+    "name": "KDEN Approach (Final 2)",
+    "url": "https://d.liveatc.net/kden1_app_fin2"
+   },
+   {
+    "name": "KDEN Approach (Final 3)",
+    "url": "https://d.liveatc.net/kden1_app_fin3"
+   },
+   {
+    "name": "KDEN Approach (North Arrival/Initial)",
+    "url": "https://d.liveatc.net/kden1_app_n_arr"
+   },
+   {
+    "name": "KDEN Approach (North)",
+    "url": "https://d.liveatc.net/kden1_app_n"
+   },
+   {
+    "name": "KDEN Approach (South Arrival/Initial)",
+    "url": "https://d.liveatc.net/kden1_app_s_arr"
+   },
+   {
+    "name": "KDEN Approach (South)",
+    "url": "https://d.liveatc.net/kden1_app_s"
+   },
+   {
+    "name": "KDEN Departure",
+    "url": "https://d.liveatc.net/kden1_2"
+   },
+   {
+    "name": "KDEN Departure (North)",
+    "url": "https://d.liveatc.net/kden1_dep_n"
+   },
+   {
+    "name": "KDEN Departure (South)",
+    "url": "https://d.liveatc.net/kden1_dep_s"
+   },
+   {
+    "name": "KDEN Departure (West)",
+    "url": "https://d.liveatc.net/kden1_dep_w"
+   },
+   {
+    "name": "ZDV Denver Center (DEN West Dep)",
+    "url": "https://d.liveatc.net/kden1_zdv06"
+   },
+   {
+    "name": "KDEN Clearance/Ground",
+    "url": "https://d.liveatc.net/kden1_9"
+   },
+   {
+    "name": "KDEN Ground (East 1)",
+    "url": "https://d.liveatc.net/kden1_gnd_east1"
+   },
+   {
+    "name": "KDEN Ground (East 2)",
+    "url": "https://d.liveatc.net/kden1_gnd_east2"
+   },
+   {
+    "name": "KDEN Ground (West 1)",
+    "url": "https://d.liveatc.net/kden1_gnd_west"
+   },
+   {
+    "name": "KDEN Ground (West 2)",
+    "url": "https://d.liveatc.net/kden1_gnd_west1"
+   },
+   {
+    "name": "KDEN Clearance Delivery",
+    "url": "https://d.liveatc.net/kden1_del"
+   },
+   {
+    "name": "ZDV Denver Center (High North)",
+    "url": "https://d.liveatc.net/kden1_6"
+   },
+   {
+    "name": "ZDV Denver Center (High South)",
+    "url": "https://d.liveatc.net/kden1_7"
+   },
+   {
+    "name": "ZDV Denver Center (Low)",
+    "url": "https://d.liveatc.net/kden1_5"
+   },
+   {
+    "name": "KDEN Emergency/Guard",
+    "url": "https://d.liveatc.net/kden1_guard"
+   },
+   {
+    "name": "KDEN ATIS (Arrival)",
+    "url": "https://d.liveatc.net/kden1_atis_arr"
+   }
+  ],
+  "tz": "America/Denver",
+  "lat": 39.856,
+  "lon": -104.674
+ },
+ {
+  "icao": "KDFW",
+  "name": "Dallas/Fort Worth International Airport",
+  "city": "Dallas",
+  "feeds": [
+   {
+    "name": "KDFW Tower (East)",
+    "url": "https://d.liveatc.net/kdfw1_twr1_e"
+   },
+   {
+    "name": "KDFW Tower (East/126.55)",
+    "url": "https://d.liveatc.net/kdfw1_twr1_e_126550"
+   },
+   {
+    "name": "KDFW Tower (East/127.5)",
+    "url": "https://d.liveatc.net/kdfw1_twr1_e_127500"
+   },
+   {
+    "name": "KDFW Tower (West)",
+    "url": "https://d.liveatc.net/kdfw1_twr1_w"
+   },
+   {
+    "name": "KDFW Tower (West/Rwy 13R/31L)",
+    "url": "https://d.liveatc.net/kdfw2_twr2_w"
+   },
+   {
+    "name": "KDFW Reg App 17/35C Final",
+    "url": "https://d.liveatc.net/kdfw1_app_fin_17c"
+   },
+   {
+    "name": "KDFW Reg App 17L/35R Final",
+    "url": "https://d.liveatc.net/kdfw1_app_fin_17l"
+   },
+   {
+    "name": "KDFW Reg App 18R/36L Final",
+    "url": "https://d.liveatc.net/kdfw1_app_fin_18r"
+   },
+   {
+    "name": "KDFW Reg App Feeder (East)",
+    "url": "https://d.liveatc.net/kdfw1_app_fe1"
+   },
+   {
+    "name": "KDFW Reg App Feeder (West)",
+    "url": "https://d.liveatc.net/kdfw1_app_feeder_west1"
+   },
+   {
+    "name": "KDFW Reg Dep (East)",
+    "url": "https://d.liveatc.net/kdfw1_dep_east"
+   },
+   {
+    "name": "KDFW Reg Dep (North/South)",
+    "url": "https://d.liveatc.net/kdfw1_dep_n_s"
+   },
+   {
+    "name": "KDFW Reg Dep (West)",
+    "url": "https://d.liveatc.net/kdfw1_dep_w"
+   },
+   {
+    "name": "KDFW Ground (East/121.65)",
+    "url": "https://d.liveatc.net/kdfw1_gnd_e_12165"
+   },
+   {
+    "name": "KDFW Ground (East/121.8)",
+    "url": "https://d.liveatc.net/kdfw1_gnd_e_1218"
+   },
+   {
+    "name": "KDFW Ground (West)",
+    "url": "https://d.liveatc.net/kdfw1_gnd_w"
+   },
+   {
+    "name": "KDFW Clearance Delivery",
+    "url": "https://d.liveatc.net/kdfw2_del"
+   },
+   {
+    "name": "KDFW Tower (Emergency)",
+    "url": "https://d.liveatc.net/kdfw1_twr_emerg"
+   },
+   {
+    "name": "KDFW ATIS (Arrival)",
+    "url": "https://d.liveatc.net/kdfw1_atis_arr"
+   }
+  ],
+  "tz": "America/Chicago",
+  "lat": 32.897,
+  "lon": -97.038
+ },
+ {
+  "icao": "KJFK",
+  "name": "John F Kennedy International Airport",
+  "city": "New York",
+  "feeds": [
+   {
+    "name": "KJFK Tower",
+    "url": "https://d.liveatc.net/kjfk_twr"
+   },
+   {
+    "name": "KJFK Tower #2",
+    "url": "https://d.liveatc.net/kjfk_twr3"
+   },
+   {
+    "name": "KJFK Tower #3",
+    "url": "https://d.liveatc.net/kjfk9_twr"
+   },
+   {
+    "name": "KJFK Tower 119.1",
+    "url": "https://d.liveatc.net/kjfk_twr_1191"
+   },
+   {
+    "name": "KJFK Tower 123.9",
+    "url": "https://d.liveatc.net/kjfk_twr_1239"
+   },
+   {
+    "name": "KJFK Gnd/Twr",
+    "url": "https://d.liveatc.net/kjfk9_s"
+   },
+   {
+    "name": "NY Approach (CAMRN/JFK) #1",
+    "url": "https://d.liveatc.net/kjfk9_app_camrn"
+   },
+   {
+    "name": "NY Approach (CAMRN/JFK) #2",
+    "url": "https://d.liveatc.net/kjfk_bw_app_camrn"
+   },
+   {
+    "name": "NY Approach (CAMRN/JFK) #3",
+    "url": "https://d.liveatc.net/kjfk_118_app_camrn"
+   },
+   {
+    "name": "NY Approach (Final/JFK) #1",
+    "url": "https://d.liveatc.net/kjfk_bw_app_final"
+   },
+   {
+    "name": "NY Approach (Final/JFK) #2",
+    "url": "https://d.liveatc.net/kjfk_118_app_final"
+   },
+   {
+    "name": "NY Approach (ROBER/JFK #1)",
+    "url": "https://d.liveatc.net/kjfk9_app_rober"
+   },
+   {
+    "name": "NY Approach (ROBER/JFK #2)",
+    "url": "https://d.liveatc.net/kjfk_app_rober"
+   },
+   {
+    "name": "NY Departure (JFK)",
+    "url": "https://d.liveatc.net/kjfk_dep"
+   },
+   {
+    "name": "NY Dep (Liberty North) #1",
+    "url": "https://d.liveatc.net/khpn_app_lib_n"
+   },
+   {
+    "name": "NY Dep (Liberty North) #2",
+    "url": "https://d.liveatc.net/ny_app_lib_north"
+   },
+   {
+    "name": "KJFK Ground #1",
+    "url": "https://d.liveatc.net/kjfk9_gnd"
+   },
+   {
+    "name": "KJFK Ground #2",
+    "url": "https://d.liveatc.net/kjfk_gnd"
+   },
+   {
+    "name": "ARINC (JFK/LGA Area)",
+    "url": "https://d.liveatc.net/kjfk_arinc"
+   },
+   {
+    "name": "KJFK Clearance Delivery #1",
+    "url": "https://d.liveatc.net/kjfk_del3"
+   },
+   {
+    "name": "KJFK Clearance Delivery #2",
+    "url": "https://d.liveatc.net/kjfk_del2"
+   },
+   {
+    "name": "KJFK Company/Ramp",
+    "url": "https://d.liveatc.net/kjfk_co"
+   },
+   {
+    "name": "ZBW Boston Center (CLIPR32)",
+    "url": "https://d.liveatc.net/zbw_ccc1"
+   },
+   {
+    "name": "ZBW Boston Center (HTO31)",
+    "url": "https://d.liveatc.net/zbw_ccc2"
+   },
+   {
+    "name": "ZBW Boston Center (SOUTHIE49)",
+    "url": "https://d.liveatc.net/zbw_ccc_southie"
+   },
+   {
+    "name": "ZBW/ZNY/ZDC (JFK Area) #1",
+    "url": "https://d.liveatc.net/zbw_ron1"
+   },
+   {
+    "name": "ZBW/ZNY/ZDC (JFK Area) #2",
+    "url": "https://d.liveatc.net/zbw_ron2"
+   },
+   {
+    "name": "ZBW/ZNY/ZDC (JFK Area) #3",
+    "url": "https://d.liveatc.net/zbw_ron3"
+   },
+   {
+    "name": "ZBW/ZNY/ZDC (JFK Area) #4",
+    "url": "https://d.liveatc.net/zbw_ron4"
+   },
+   {
+    "name": "ZNY Misc (NE PA)",
+    "url": "https://d.liveatc.net/zbw_ron5"
+   },
+   {
+    "name": "ZNY Sector 56 (Kennedy)",
+    "url": "https://d.liveatc.net/zny_col_ken"
+   },
+   {
+    "name": "ZNY Sector 67 (Dixie)",
+    "url": "https://d.liveatc.net/zny_col_dix"
+   },
+   {
+    "name": "KJFK D-ATIS",
+    "url": "https://d.liveatc.net/kjfk_atis"
+   }
+  ],
+  "tz": "America/New_York",
+  "lat": 40.641,
+  "lon": -73.778
+ },
+ {
+  "icao": "KLAX",
+  "name": "Los Angeles International Airport",
+  "city": "Los Angeles",
+  "feeds": [
+   {
+    "name": "KLAX Tower (North) #1",
+    "url": "https://d.liveatc.net/klax3"
+   },
+   {
+    "name": "KLAX Tower (North) #2",
+    "url": "https://d.liveatc.net/khhr1_klax_twr_n"
+   },
+   {
+    "name": "KLAX Tower (North/South) #1",
+    "url": "https://d.liveatc.net/klax_twr"
+   },
+   {
+    "name": "KLAX Tower (South) #1",
+    "url": "https://d.liveatc.net/klax4"
+   },
+   {
+    "name": "KLAX Tower (South) #2",
+    "url": "https://d.liveatc.net/khhr1_klax_twr_s"
+   },
+   {
+    "name": "KLAX App (East Feeder)",
+    "url": "https://d.liveatc.net/kpoc2_klax_app_east_feeder"
+   },
+   {
+    "name": "KLAX App (Zuma/NW Arr)",
+    "url": "https://d.liveatc.net/klax3n_nw_feeder"
+   },
+   {
+    "name": "KLAX App (Zuma/NW Arr) #2",
+    "url": "https://d.liveatc.net/khhr1_app_124500"
+   },
+   {
+    "name": "KLAX Dep/West App",
+    "url": "https://d.liveatc.net/klax7"
+   },
+   {
+    "name": "KLAX Final App (North)",
+    "url": "https://d.liveatc.net/klax4n_app_fin_n"
+   },
+   {
+    "name": "KLAX Final App (North/South)",
+    "url": "https://d.liveatc.net/klax6"
+   },
+   {
+    "name": "KLAX Final App (South) #1",
+    "url": "https://d.liveatc.net/klax3n_app_fin_s"
+   },
+   {
+    "name": "SOCAL Dep (Malibu Sector W/NW Dep) #1",
+    "url": "https://d.liveatc.net/klax3n_dep_125200"
+   },
+   {
+    "name": "SOCAL Dep (Manhattan Sector SW-NE) #1",
+    "url": "https://d.liveatc.net/klax3n_dep_124300"
+   },
+   {
+    "name": "KLAX Ground (Metering)",
+    "url": "https://d.liveatc.net/klax3n_p_gnd_meter"
+   },
+   {
+    "name": "KLAX Ground (North)",
+    "url": "https://d.liveatc.net/klax1"
+   },
+   {
+    "name": "KLAX Ground (North/South)",
+    "url": "https://d.liveatc.net/klax_gnd"
+   },
+   {
+    "name": "KLAX Ground (South)",
+    "url": "https://d.liveatc.net/klax5"
+   },
+   {
+    "name": "KLAX ARINC 128.9",
+    "url": "https://d.liveatc.net/klax4n_arinc"
+   },
+   {
+    "name": "KLAX Clearance Delivery",
+    "url": "https://d.liveatc.net/klax3n_del"
+   },
+   {
+    "name": "KLAX SFRA",
+    "url": "https://d.liveatc.net/klax4n_sfra"
+   },
+   {
+    "name": "ZLA LA Center Sector 04",
+    "url": "https://d.liveatc.net/khhr1_zla04"
+   },
+   {
+    "name": "ZLA LA Center Sector 09",
+    "url": "https://d.liveatc.net/ksan_zla09"
+   },
+   {
+    "name": "ZLA LA Center Sector 10",
+    "url": "https://d.liveatc.net/ksan_zla10"
+   },
+   {
+    "name": "ZLA LA Center Sector 12",
+    "url": "https://d.liveatc.net/ksan_zla12"
+   },
+   {
+    "name": "ZLA LA Center Sector 13",
+    "url": "https://d.liveatc.net/khhr1_zla13"
+   },
+   {
+    "name": "ZLA LA Center Sector 21",
+    "url": "https://d.liveatc.net/khhr1_zla21"
+   },
+   {
+    "name": "ZLA LA Center Sector 21",
+    "url": "https://d.liveatc.net/klax4n_zla_132850"
+   },
+   {
+    "name": "ZLA LA Center Sector 30 #1",
+    "url": "https://d.liveatc.net/kont1_zla30"
+   },
+   {
+    "name": "ZLA LA Center Sector 30 #2",
+    "url": "https://d.liveatc.net/klax3n_zla30"
+   },
+   {
+    "name": "ZLA LA Center Sector 30 #3",
+    "url": "https://d.liveatc.net/ksan_zla30"
+   },
+   {
+    "name": "ZLA LA Center Sector 30 #4",
+    "url": "https://d.liveatc.net/khhr1_zla30"
+   },
+   {
+    "name": "ZLA LA Center Sector 31",
+    "url": "https://d.liveatc.net/ksan_zla31"
+   },
+   {
+    "name": "ZLA LA Center Sector 40",
+    "url": "https://d.liveatc.net/ksan_zla40"
+   },
+   {
+    "name": "ZLA LA Center Sectors 04/13/21",
+    "url": "https://d.liveatc.net/klax8"
+   },
+   {
+    "name": "KLAX ARFF/Emergency",
+    "url": "https://d.liveatc.net/klax3n_arff"
+   },
+   {
+    "name": "KLAX Tower (Helicopters) #1",
+    "url": "https://d.liveatc.net/klax3n_heli"
+   },
+   {
+    "name": "KLAX ATIS (Arrival)",
+    "url": "https://d.liveatc.net/klax4n_atis_arr"
+   },
+   {
+    "name": "KLAX ATIS (Departure)",
+    "url": "https://d.liveatc.net/klax4n_atis_dep"
+   }
+  ],
+  "tz": "America/Los_Angeles",
+  "lat": 33.942,
+  "lon": -118.408
+ },
+ {
+  "icao": "KORD",
+  "name": "Chicago O'Hare International Airport",
+  "city": "Chicago",
+  "feeds": [
+   {
+    "name": "KORD Tower (Center 10C-28C/4R-22L)",
+    "url": "https://d.liveatc.net/kord1n2_twr_ctr2"
+   },
+   {
+    "name": "KORD Tower (Center 10L/28R)",
+    "url": "https://d.liveatc.net/kord1n1_twr_132700"
+   },
+   {
+    "name": "KORD Tower (Center 9C-27C)",
+    "url": "https://d.liveatc.net/kord1n2_twr_ctr1"
+   },
+   {
+    "name": "KORD Tower (North) #2",
+    "url": "https://d.liveatc.net/kord1n1_twr_126900"
+   },
+   {
+    "name": "KORD Tower (South) #2",
+    "url": "https://d.liveatc.net/kord1n1_twr_120750"
+   },
+   {
+    "name": "KORD Towers (North Side)",
+    "url": "https://d.liveatc.net/kord1s1_twr_n"
+   },
+   {
+    "name": "KORD Towers (South Side)",
+    "url": "https://d.liveatc.net/kord1s1_twr_s"
+   },
+   {
+    "name": "KORD App (10R/28C) #2",
+    "url": "https://d.liveatc.net/kord1n1_app_133625"
+   },
+   {
+    "name": "KORD App (27R/9L) #2",
+    "url": "https://d.liveatc.net/kord1n1_app_124350"
+   },
+   {
+    "name": "KORD App (27R/9L) #3",
+    "url": "https://d.liveatc.net/kord1n2_app_124350"
+   },
+   {
+    "name": "KORD App (28C)",
+    "url": "https://d.liveatc.net/kord1n1_app_132175"
+   },
+   {
+    "name": "KORD Dep (125.0) #1",
+    "url": "https://d.liveatc.net/kord1n1_dep_125000"
+   },
+   {
+    "name": "KORD Dep (125.0) #2",
+    "url": "https://d.liveatc.net/kord1n2_dep_125000"
+   },
+   {
+    "name": "KORD Dep (125.4)",
+    "url": "https://d.liveatc.net/kord1s1_dep_sw"
+   },
+   {
+    "name": "KORD Dep (125.4)",
+    "url": "https://d.liveatc.net/kord1n1_dep_125400"
+   },
+   {
+    "name": "KORD Ground",
+    "url": "https://d.liveatc.net/kord1s1_gnd"
+   },
+   {
+    "name": "KORD Ground (Inbound) #1",
+    "url": "https://d.liveatc.net/kord1n2_gnd_in"
+   },
+   {
+    "name": "KORD Ground (Inbound) #2",
+    "url": "https://d.liveatc.net/kord2n_gnd_in"
+   },
+   {
+    "name": "KORD Ground (Outbound) #1",
+    "url": "https://d.liveatc.net/kord1n2_gnd_out"
+   },
+   {
+    "name": "KORD Ground (Outbound) #2",
+    "url": "https://d.liveatc.net/kord2n_gnd_out"
+   },
+   {
+    "name": "KORD Ground/Metering",
+    "url": "https://d.liveatc.net/kord1n2_gnd_meter"
+   },
+   {
+    "name": "KORD Del/Ramp/Metering",
+    "url": "https://d.liveatc.net/kord1s1_del_ramp"
+   },
+   {
+    "name": "ZAU Chicago Center (Sector 81 CRIBB Low) #1",
+    "url": "https://d.liveatc.net/kord1n2_zau_cribb"
+   },
+   {
+    "name": "ZAU Chicago Center (Sector 81 CRIBB Low) #2",
+    "url": "https://d.liveatc.net/kord1n1_zau_cribb"
+   },
+   {
+    "name": "KORD ATIS",
+    "url": "https://d.liveatc.net/kord1s1_atis"
+   }
+  ],
+  "tz": "America/Chicago",
+  "lat": 41.978,
+  "lon": -87.905
+ },
+ {
+  "icao": "KPHX",
+  "name": "Phoenix Sky Harbor International Airport",
+  "city": "Phoenix",
+  "feeds": [
+   {
+    "name": "KPHX Tower (North)",
+    "url": "https://d.liveatc.net/kphx_twr_n"
+   },
+   {
+    "name": "KPHX Tower (North/South)",
+    "url": "https://d.liveatc.net/kphx_twr_both"
+   },
+   {
+    "name": "KPHX Tower (South)",
+    "url": "https://d.liveatc.net/kphx_twr_s"
+   },
+   {
+    "name": "KPHX Approach (Biltmore Sector)",
+    "url": "https://d.liveatc.net/kphx4_app_sdl"
+   },
+   {
+    "name": "KPHX Approach (N/S)/S Final",
+    "url": "https://d.liveatc.net/kphx_app_s"
+   },
+   {
+    "name": "KPHX Approach (North Final)",
+    "url": "https://d.liveatc.net/kphx_app_nf"
+   },
+   {
+    "name": "KPHX Approach (Pima Sector)",
+    "url": "https://d.liveatc.net/kphx4_app_123700"
+   },
+   {
+    "name": "KPHX Approach (Pima/Willy Sectors)",
+    "url": "https://d.liveatc.net/kphx4_app_pima_willy"
+   },
+   {
+    "name": "KPHX Approach (SDL/Tempe/West)",
+    "url": "https://d.liveatc.net/kphx_app_sat"
+   },
+   {
+    "name": "KPHX Departure",
+    "url": "https://d.liveatc.net/kphx_dep"
+   },
+   {
+    "name": "KPHX Ground (North/Pri)",
+    "url": "https://d.liveatc.net/kphx_gnd_n1"
+   },
+   {
+    "name": "KPHX Ground (North/Sec)",
+    "url": "https://d.liveatc.net/kphx_gnd_n2"
+   },
+   {
+    "name": "KPHX Ground (South)",
+    "url": "https://d.liveatc.net/kphx_gnd_s"
+   },
+   {
+    "name": "ZAB Sector 38 (Miami Low)",
+    "url": "https://d.liveatc.net/kphx4_zab38"
+   },
+   {
+    "name": "KPHX Tower (Discrete/Emergency)",
+    "url": "https://d.liveatc.net/kphx4_twr_em"
+   }
+  ],
+  "tz": "America/Phoenix",
+  "lat": 33.434,
+  "lon": -112.012
+ },
+ {
+  "icao": "KSAN",
+  "name": "San Diego International Airport",
+  "city": "San Diego",
+  "feeds": [
+   {
+    "name": "KSAN Tower #1",
+    "url": "https://d.liveatc.net/ksan1_twr"
+   },
+   {
+    "name": "KSAN Ramp/Del/Gnd/Twr",
+    "url": "https://d.liveatc.net/ksan1_all"
+   },
+   {
+    "name": "SOCAL App/Dep (Del Mar VHF)",
+    "url": "https://d.liveatc.net/ksan_app_delmar"
+   },
+   {
+    "name": "SOCAL App/Dep (East)",
+    "url": "https://d.liveatc.net/ksan_app_east"
+   },
+   {
+    "name": "SOCAL App/Dep (NW)",
+    "url": "https://d.liveatc.net/ksan_app_nw"
+   },
+   {
+    "name": "SOCAL App/Dep (West)",
+    "url": "https://d.liveatc.net/ksan_app_west"
+   },
+   {
+    "name": "KSAN SOCAL Dep (South Bay)",
+    "url": "https://d.liveatc.net/ksan_dep_125150"
+   },
+   {
+    "name": "KSAN Ground #1",
+    "url": "https://d.liveatc.net/ksan1_gnd"
+   },
+   {
+    "name": "KSAN Clearance Delivery",
+    "url": "https://d.liveatc.net/ksan1_del"
+   },
+   {
+    "name": "KSAN Ramp",
+    "url": "https://d.liveatc.net/ksan1_ramp"
+   }
+  ],
+  "tz": "America/Los_Angeles",
+  "lat": 32.734,
+  "lon": -117.19
+ },
+ {
+  "icao": "RJTT",
+  "name": "Tokyo International Airport",
+  "city": "Tokyo",
+  "feeds": [
+   {
+    "name": "RJTT Del/Twr/TCA/Gnd",
+    "url": "https://d.liveatc.net/rjtt_twr_tca"
+   },
+   {
+    "name": "RJTT Twr/TCA",
+    "url": "https://d.liveatc.net/rjtt_twr"
+   },
+   {
+    "name": "RJTT Approach",
+    "url": "https://d.liveatc.net/rjtt_app"
+   },
+   {
+    "name": "RJTT App/Dep",
+    "url": "https://d.liveatc.net/rjtt_app_dep"
+   },
+   {
+    "name": "RJTT Departure",
+    "url": "https://d.liveatc.net/rjtt_dep"
+   },
+   {
+    "name": "RJTT Del/Ground",
+    "url": "https://d.liveatc.net/rjtt_gnd"
+   },
+   {
+    "name": "RJTT Company Channels",
+    "url": "https://d.liveatc.net/rjtt2"
+   },
+   {
+    "name": "RJTT Tokyo Control",
+    "url": "https://d.liveatc.net/rjtt_control"
+   },
+   {
+    "name": "RJTT ATIS",
+    "url": "https://d.liveatc.net/rjtt_atis"
+   }
+  ],
+  "tz": "Asia/Tokyo",
+  "lat": 35.549,
+  "lon": 139.78
+ },
+ {
+  "icao": "YSSY",
+  "name": "Sydney International Airport",
+  "city": "Sydney",
+  "feeds": [
+   {
+    "name": "YSSY Tower (Both)",
+    "url": "https://d.liveatc.net/yssy1_twr"
+   },
+   {
+    "name": "YSSY Tower (Rwy 16L/34R)",
+    "url": "https://d.liveatc.net/yssy1_twr2"
+   },
+   {
+    "name": "YSSY Tower (Rwys 16R/34L,7/25)",
+    "url": "https://d.liveatc.net/yssy1_twr1"
+   },
+   {
+    "name": "YSSY Approach (North/East)",
+    "url": "https://d.liveatc.net/yssy1_app_n"
+   },
+   {
+    "name": "YSSY Approach (South)",
+    "url": "https://d.liveatc.net/yssy1_app_s"
+   },
+   {
+    "name": "YSSY Departure (North/East)",
+    "url": "https://d.liveatc.net/yssy1_dep_ne"
+   },
+   {
+    "name": "YSSY Departure (South/West)",
+    "url": "https://d.liveatc.net/yssy1_dep_s"
+   },
+   {
+    "name": "YSSY Del/Gnd",
+    "url": "https://d.liveatc.net/yssy1_del_gnd"
+   },
+   {
+    "name": "Brisbane Center (124.625/YSSY)",
+    "url": "https://d.liveatc.net/yssy1_ctr_124625"
+   },
+   {
+    "name": "Brisbane Center (124.95/YSSY)",
+    "url": "https://d.liveatc.net/yssy1_ctr_124950"
+   },
+   {
+    "name": "Brisbane Center (125.0/YSSY)",
+    "url": "https://d.liveatc.net/yssy1_ctr_125000"
+   },
+   {
+    "name": "Brisbane Center (128.6/YSSY)",
+    "url": "https://d.liveatc.net/yssy1_ctr_128600"
+   },
+   {
+    "name": "YSSY Center (South/West)",
+    "url": "https://d.liveatc.net/yssy1_ctr_s"
+   },
+   {
+    "name": "YSSY Director (East)",
+    "url": "https://d.liveatc.net/yssy1_dir_e"
+   },
+   {
+    "name": "YSSY ATIS",
+    "url": "https://d.liveatc.net/yssy1_atis1"
+   }
+  ],
+  "tz": "Australia/Sydney",
+  "lat": -33.946,
+  "lon": 151.177
+ }
+]

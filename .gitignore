@@ -1,0 +1,14 @@
+# Android build output and machine-specific settings
+tv/local.properties
+tv/.gradle/
+tv/build/
+tv/app/build/
+*.apk
+.idea/
+*.iml
+
+# Python
+__pycache__/
+
+# Test screenshots (the ones used in the README live in docs/)
+/tv*.png

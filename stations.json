@@ -1,0 +1,67 @@
+[
+ {
+  "group": "Lofi",
+  "name": "Radio Caprice \u00b7 Lo-Fi",
+  "url": "http://79.111.14.76:8002/lo-fi"
+ },
+ {
+  "group": "Lofi",
+  "name": "Radio Caprice \u00b7 Lo-Fi (2)",
+  "url": "http://79.111.14.76:8004/lo-fi"
+ },
+ {
+  "group": "Lofi",
+  "name": "Radio Caprice \u00b7 Trip-Hop",
+  "url": "http://79.111.14.76:8002/triphop"
+ },
+ {
+  "group": "Chill",
+  "name": "Radio Caprice \u00b7 Downtempo",
+  "url": "http://79.120.77.11:8004/downtempo"
+ },
+ {
+  "group": "Chill",
+  "name": "Radio Caprice \u00b7 Chill Out",
+  "url": "http://79.111.14.76:8000/chillout"
+ },
+ {
+  "group": "Chill",
+  "name": "Radio Caprice \u00b7 Lounge",
+  "url": "http://79.111.14.76:8002/lounge"
+ },
+ {
+  "group": "Chill",
+  "name": "Radio Caprice \u00b7 New Age",
+  "url": "http://79.120.77.11:8002/newage"
+ },
+ {
+  "group": "Synth",
+  "name": "Nightride FM \u00b7 Chillsynth",
+  "url": "https://stream.nightride.fm/chillsynth.mp3"
+ },
+ {
+  "group": "Synth",
+  "name": "Nightride FM \u00b7 Datawave",
+  "url": "https://stream.nightride.fm/datawave.mp3"
+ },
+ {
+  "group": "Synth",
+  "name": "Nightride FM \u00b7 Spacesynth",
+  "url": "https://stream.nightride.fm/spacesynth.mp3"
+ },
+ {
+  "group": "Synth",
+  "name": "Nightwave Plaza (vaporwave)",
+  "url": "https://radio.plaza.one/mp3"
+ },
+ {
+  "group": "Mellow",
+  "name": "Radio Paradise \u00b7 Mellow Mix",
+  "url": "https://stream.radioparadise.com/mellow-128"
+ },
+ {
+  "group": "Mellow",
+  "name": "Radio Paradise \u00b7 Main Mix",
+  "url": "https://stream.radioparadise.com/mp3-128"
+ }
+]
