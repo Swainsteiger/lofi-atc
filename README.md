@@ -15,7 +15,34 @@ screen on your home network. Inspired by lofiatc.com, which went offline.
 - **Talk light** that glows while a controller or pilot is speaking.
 - Separate volume for radio and music. A dead radio channel is skipped automatically.
 
-## PC (any browser)
+## Install it (no technical knowledge needed)
+
+### Windows PC
+
+1. Download **[Lofi-ATC-Setup.exe](https://github.com/Swainsteiger/lofi-atc/releases/latest/download/Lofi-ATC-Setup.exe)**.
+2. Open the downloaded file. Windows may show **"Windows protected your PC"**: this appears for apps
+   from small independent developers that haven't paid for a code-signing certificate. Click
+   **More info**, then **Run anyway**.
+3. Click **Install**. No administrator password is needed.
+4. Open **Lofi ATC** from the desktop icon or the Start menu. It opens in its own window; click the
+   round play button if it doesn't start by itself.
+
+To remove it: Settings → Apps → Installed apps → Lofi ATC → Uninstall.
+
+### Android TV / Google TV
+
+1. On the TV, open the **Google Play Store**, search for **Downloader** (by AFTVnews) and install it.
+2. Open Downloader. When asked, allow it to access files.
+3. In the address box, type this and press Go:
+   `https://github.com/Swainsteiger/lofi-atc/releases/latest/download/Lofi-ATC-TV.apk`
+4. When it finishes downloading, choose **Install**. If the TV says installing from this source isn't
+   allowed, it offers a shortcut to **Settings**: turn on **Allow from this source** for Downloader,
+   go back and choose Install again.
+5. **Lofi ATC** now appears with your other apps. Downloader can be uninstalled afterwards.
+
+## Run from source
+
+### PC (any browser)
 
 Needs Python 3 (standard library only).
 
@@ -23,19 +50,20 @@ Needs Python 3 (standard library only).
 python pc/serve.pyw
 ```
 
-This serves the page at `http://127.0.0.1:8770`, opens it in Chrome as an app window (or your default
-browser), and fetches the plane counts that a browser can't fetch on its own. It quits ten minutes
-after the last page is closed.
+This serves the page at `http://127.0.0.1:8770`, opens it as an app window in Chrome or Edge (or your
+default browser), and fetches the plane counts that a browser can't fetch on its own. It quits ten
+minutes after the last page is closed.
 
-Other devices on the same Wi-Fi (a tablet, an old smart display) can open
-`http://<your-pc-ip>:8770` in their browser. Windows may need an inbound firewall rule for TCP 8770.
+To let other devices on the same Wi-Fi (a tablet, an old smart display) open it at
+`http://<your-pc-ip>:8770`, start it with `python pc/serve.pyw --lan`. Windows may ask to allow it
+through the firewall.
 
 Keyboard: Space play/pause, ←/→ airport, ↑/↓ radio channel, M music, B busiest airport.
 
-On Windows, a desktop shortcut that runs `pythonw.exe pc\serve.pyw` (with `pc\lofiatc.ico` as its icon)
-starts it without a console window.
+`build-windows.ps1` builds the Windows installer (`dist\Lofi-ATC-Setup.exe`) with Python bundled in,
+using PyInstaller and [Inno Setup 6](https://jrsoftware.org/isinfo.php).
 
-## Android TV
+### Android TV
 
 ![Busiest airport on the TV](docs/tv-busiest.png)
 
@@ -51,7 +79,7 @@ It shows up as **Lofi ATC** in the TV's apps. On the remote: ▲▼ choose a row
 play/pause, CH+/CH− airport. OK on **Busiest now** jumps to the busiest airport. The release build is
 signed with the debug key, for sideloading.
 
-## Changing airports or stations
+### Changing airports or stations
 
 The lists live in `make_airports.py` (`STATIONS` for music, `POS` and `TZ` for airport location and
 time zone). The airport feed lists come from lofiatc.com's `/airport/<icao>` JSON; save one per airport

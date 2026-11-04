@@ -1,21 +1,34 @@
 """Lofi ATC on the PC: serves this folder at http://127.0.0.1:8770 and opens it as a Chrome app window.
 Also answers /activity with how many planes are around each airport right now (from adsb.fi's open data),
 which a page opened straight from disk could not fetch itself. Started by the desktop shortcut with pythonw
-(no console window); quits on its own once the page has been closed for 10 minutes."""
+(no console window), or as LofiATC.exe from the Windows installer; quits on its own once the page has been
+closed for 10 minutes. Pass --lan to let other devices on the home network open it too."""
 import http.server
 import json
-import math
 import os
 import socket
 import subprocess
+import sys
 import threading
 import time
 import urllib.request
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, "frozen", False):  # packaged LofiATC.exe: its files are unpacked next to the bundled Python
+    HERE = os.path.join(sys._MEIPASS, "pc")
+    AIRPORTS = os.path.join(sys._MEIPASS, "airports.json")
+else:
+    HERE = os.path.dirname(os.path.abspath(__file__))
+    AIRPORTS = os.path.join(HERE, "..", "airports.json")
 PORT = 8770
 URL = "http://127.0.0.1:%d/" % PORT
-CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+# An app window (no tabs or address bar) in Chrome, or in Edge, which every Windows PC has.
+BROWSERS = [os.path.expandvars(p) for p in (
+    r"%ProgramFiles%\Google\Chrome\Application\chrome.exe",
+    r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe",
+    r"%LocalAppData%\Google\Chrome\Application\chrome.exe",
+    r"%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe",
+    r"%ProgramFiles%\Microsoft\Edge\Application\msedge.exe")]
+LAN = "--lan" in sys.argv
 REFRESH_S = 300
 IDLE_EXIT_S = 600
 # A plane counts toward an airport within this distance and below this altitude (or taxiing):
@@ -36,7 +49,7 @@ def count_planes(lat, lon):
 
 
 def refresher():
-    airports = json.load(open(os.path.join(HERE, "..", "airports.json"), encoding="utf-8"))
+    airports = json.load(open(AIRPORTS, encoding="utf-8"))
     while True:
         for a in airports:
             try:
@@ -73,11 +86,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 def open_window():
     if os.environ.get("LOFIATC_NO_WINDOW"):  # testing
         return
-    if os.path.exists(CHROME):
-        subprocess.Popen([CHROME, "--app=" + URL, "--window-size=720,960"])
-    else:
-        import webbrowser
-        webbrowser.open(URL)
+    for exe in BROWSERS:
+        if os.path.exists(exe):
+            subprocess.Popen([exe, "--app=" + URL, "--window-size=720,960"])
+            return
+    import webbrowser
+    webbrowser.open(URL)
 
 
 def main():
@@ -86,7 +100,7 @@ def main():
         if s.connect_ex(("127.0.0.1", PORT)) == 0:
             open_window()
             return
-    server = http.server.ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
+    server = http.server.ThreadingHTTPServer(("0.0.0.0" if LAN else "127.0.0.1", PORT), Handler)
     threading.Thread(target=server.serve_forever, daemon=True).start()
     threading.Thread(target=refresher, daemon=True).start()
     open_window()

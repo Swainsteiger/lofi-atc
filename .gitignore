@@ -12,3 +12,7 @@ __pycache__/
 
 # Test screenshots (the ones used in the README live in docs/)
 /tv*.png
+
+# Windows installer build
+build-win/
+dist/
