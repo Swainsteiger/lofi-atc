@@ -9,7 +9,10 @@ screen on your home network. Inspired by lofiatc.com, which went offline.
 
 - **Live tower and approach radio** from 17 airports (Las Vegas, San Francisco, San Jose, New York,
   Amsterdam, Tokyo, Sydney and more) via [LiveATC.net](https://www.liveatc.net).
-- **13 ad-free music stations**: lofi, trip-hop, downtempo, chillsynth, vaporwave and mellow mixes.
+- **Soft lofi playlist**: 69 calm, mellow chill-hop tracks (over three hours, by Purrple Cat,
+  < e s c p >, Ghostrifter and others), shuffled, with the song and artist on screen. All Creative
+  Commons, see [MUSIC-CREDITS.md](MUSIC-CREDITS.md).
+- **13 ad-free radio stations**: lofi, trip-hop, downtempo, chillsynth, vaporwave and mellow mixes.
 - **Busiest airport finder**: counts the planes in the air or taxiing within 20 nm of each airport
   ([adsb.fi](https://adsb.fi) open data), so you can jump to the one with the most radio chatter.
 - **Talk light** that glows while a controller or pilot is speaking.
@@ -81,16 +84,25 @@ signed with the debug key, for sideloading.
 
 ### Changing airports or stations
 
-The lists live in `make_airports.py` (`STATIONS` for music, `POS` and `TZ` for airport location and
-time zone). The airport feed lists come from lofiatc.com's `/airport/<icao>` JSON; save one per airport
-into a folder, then run
+The lists live in `make_airports.py` (`STATIONS` for radio stations, `POS` and `TZ` for airport location
+and time zone). The airport feed lists come from lofiatc.com's `/airport/<icao>` JSON; save one per
+airport into a folder, then run
 
 ```
 python make_airports.py <folder>
 ```
 
-It rewrites `airports.json`, `stations.json`, `pc/data.js` and the TV app's assets. Rebuild the TV app
-afterwards. `make_icon.py` redraws the icon and TV banner (needs Pillow).
+It rewrites `airports.json`, `stations.json`, `pc/data.js` and the TV app's assets (without a folder it
+keeps the airports and only refreshes the music). Rebuild the TV app afterwards. `make_icon.py` redraws
+the icon and TV banner (needs Pillow).
+
+### Changing the Soft lofi playlist
+
+The tracks are listed in `music/source.json`; only CC BY and CC BY-SA tracks belong there. Download each
+one with its **Free Download** button on free-stock-music.com into `music/downloads` (the site doesn't
+allow direct downloads), then run `python music/build_music.py` (needs ffmpeg). It converts them to
+128 kbps and writes `music/tracks.json` and `MUSIC-CREDITS.md`. Upload `music/build/*.mp3` to the
+`music-v1` release (or a new tag, changing `RELEASE` in the script), then run `python make_airports.py`.
 
 ## Credits and fair use
 
@@ -98,7 +110,12 @@ afterwards. `make_icon.py` redraws the icon and TV banner (needs Pillow).
   this project plays them in your own browser or app and does not rebroadcast them. It is not
   affiliated with or endorsed by LiveATC.net or lofiatc.com.
 - Plane counts: [adsb.fi](https://adsb.fi) open data, at most one request a second.
-- Music: [Radio Caprice](http://radcap.ru), [Nightride FM](https://nightride.fm),
+- Soft lofi playlist: 69 tracks by Purrple Cat, < e s c p >, Ghostrifter Official, Alex-Productions,
+  Schematist and others, under CC BY and CC BY-SA licenses, found via
+  [free-stock-music.com](https://www.free-stock-music.com). Every track, artist and license is listed in
+  [MUSIC-CREDITS.md](MUSIC-CREDITS.md) and shown on screen while it plays. The licenses of these tracks,
+  not this project's MIT license, apply to them.
+- Radio: [Radio Caprice](http://radcap.ru), [Nightride FM](https://nightride.fm),
   [Nightwave Plaza](https://plaza.one) and [Radio Paradise](https://radioparadise.com), all
   commercial-free. Support them if you enjoy them.
 - Font: [Outfit](https://github.com/Outfitio/Outfit-Fonts), SIL Open Font License 1.1.

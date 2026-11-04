@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 import androidx.annotation.OptIn;
 import androidx.media3.common.MediaItem;
+import androidx.media3.common.MediaMetadata;
 import androidx.media3.common.PlaybackException;
 import androidx.media3.common.Player;
 import androidx.media3.common.util.UnstableApi;
@@ -50,7 +52,7 @@ public class MainActivity extends Activity {
     private static final int AMBER = 0xFFFFB86B, TEXT = 0xFFE9E6F5, DIM = 0xFF9A96B4, LIVE = 0xFF5CF2A5;
     private static final long HIDE_AFTER_MS = 10_000, RETRY_MS = 4_000;
     /** Panel rows, top to bottom. */
-    private static final int BUSIEST = 0, AIRPORT = 1, FEED = 2, ATC_VOL = 3, MUSIC = 4, MUSIC_VOL = 5;
+    private static final int BUSIEST = 0, AIRPORT = 1, FEED = 2, ATC_VOL = 3, MUSIC = 4, TRACK = 5, MUSIC_VOL = 6;
 
     private static class Airport {
         String icao, name, city, tz;
@@ -60,8 +62,13 @@ public class MainActivity extends Activity {
 
     private final Handler ui = new Handler(Looper.getMainLooper());
     private final List<Airport> airports = new ArrayList<>();
-    /** Ad-free music stations (assets/stations.json, same list as the PC page): name, url. */
+    /** Music (assets/stations.json, same list as the PC page): name, url; url is null for the Soft lofi playlist. */
     private final List<String[]> stations = new ArrayList<>();
+    /** The Soft lofi playlist (assets/tracks.json, Creative Commons tracks): title, artist, license, url. */
+    private final List<String[]> tracks = new ArrayList<>();
+    /** For testing before the tracks are uploaded: play them from this address instead (intent extra). */
+    private String musicBase;
+    private int trackErrors;
     private final Traffic traffic = new Traffic(this::onTraffic);
     private int offAir;
     private final Random random = new Random();
@@ -83,6 +90,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         loadAirports();
+        musicBase = getIntent().getStringExtra("musicBase");
         prefs = getSharedPreferences("lofiatc", MODE_PRIVATE);
         airport = clamp(indexOf(prefs.getString("icao", "KLAS")), airports.size());
         feed = clamp(prefs.getInt("feed", 0), airports.get(airport).feeds.size());
@@ -127,7 +135,7 @@ public class MainActivity extends Activity {
         }
         applyVolume();
         start(atc, airports.get(airport).feeds.get(feed)[1]);
-        start(music, stations.get(station)[1]);
+        startMusic();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setStatus("Tuning in…");
     }
@@ -148,12 +156,51 @@ public class MainActivity extends Activity {
         p.setPlayWhenReady(true);
     }
 
+    private boolean isPlaylist() { return stations.get(station)[1] == null; }
+
+    /** A radio station, or the Soft lofi playlist: every track, shuffled, round and round. */
+    private void startMusic() {
+        if (music == null) return;
+        trackErrors = 0;
+        if (!isPlaylist()) {
+            music.setShuffleModeEnabled(false);
+            music.setRepeatMode(Player.REPEAT_MODE_OFF);
+            start(music, stations.get(station)[1]);
+            return;
+        }
+        List<MediaItem> items = new ArrayList<>();
+        for (int i = 0; i < tracks.size(); i++) {
+            String[] t = tracks.get(i);
+            String url = musicBase == null ? t[3] : musicBase + t[3].substring(t[3].lastIndexOf('/') + 1);
+            items.add(new MediaItem.Builder().setUri(url).setMediaId(String.valueOf(i))
+                    .setMediaMetadata(new MediaMetadata.Builder().setTitle(t[0]).setArtist(t[1]).build()).build());
+        }
+        music.setShuffleModeEnabled(true);
+        music.setRepeatMode(Player.REPEAT_MODE_ALL);
+        music.setMediaItems(items, random.nextInt(items.size()), 0);
+        music.prepare();
+        music.setPlayWhenReady(true);
+    }
+
+    /** The playlist track playing now, or null. */
+    private String[] currentTrack() {
+        if (music == null || !isPlaylist() || music.getCurrentMediaItem() == null) return null;
+        return tracks.get(Integer.parseInt(music.getCurrentMediaItem().mediaId));
+    }
+
+    private void skipTrack(int d) {
+        if (music == null || !isPlaylist()) return;
+        if (d > 0) music.seekToNextMediaItem(); else music.seekToPreviousMediaItem();
+        music.prepare();
+        music.setPlayWhenReady(true);
+    }
+
     private void applyVolume() {
         if (atc != null) { atc.setVolume(atcVol / 10f); music.setVolume(musicVol / 10f); }
     }
 
     private final Runnable retryAtc = () -> { if (playing) start(atc, airports.get(airport).feeds.get(feed)[1]); };
-    private final Runnable retryMusic = () -> { if (playing) start(music, stations.get(station)[1]); };
+    private final Runnable retryMusic = () -> { if (playing) startMusic(); };
 
     /** Live streams drop now and then: start them again after a short wait. */
     private class Retry implements Player.Listener {
@@ -172,6 +219,11 @@ public class MainActivity extends Activity {
                 start(atc, airports.get(airport).feeds.get(feed)[1]);
                 return;
             }
+            // A playlist track that fails to load is skipped; after a run of failures, start over after a wait.
+            if (!isAtc && playing && isPlaylist() && ++trackErrors <= 3) {
+                skipTrack(1);
+                return;
+            }
             again();
         }
 
@@ -179,9 +231,14 @@ public class MainActivity extends Activity {
         public void onPlaybackStateChanged(int s) {
             if (s == Player.STATE_ENDED) again();
             if (s == Player.STATE_READY && playing) {
-                if (isAtc) offAir = 0;
+                if (isAtc) offAir = 0; else trackErrors = 0;
                 setStatus(nowPlaying());
             }
+        }
+
+        @Override
+        public void onMediaItemTransition(MediaItem item, int reason) {
+            if (!isAtc) refresh();
         }
 
         private void again() {
@@ -224,6 +281,8 @@ public class MainActivity extends Activity {
                 case KeyEvent.KEYCODE_MEDIA_PLAY: if (!playing) play(); return true;
                 case KeyEvent.KEYCODE_MEDIA_PAUSE:
                 case KeyEvent.KEYCODE_MEDIA_STOP: if (playing) stop(); return true;
+                case KeyEvent.KEYCODE_MEDIA_NEXT: skipTrack(1); return true;
+                case KeyEvent.KEYCODE_MEDIA_PREVIOUS: skipTrack(-1); return true;
                 case KeyEvent.KEYCODE_CHANNEL_UP: change(AIRPORT, 1); return true;
                 case KeyEvent.KEYCODE_CHANNEL_DOWN: change(AIRPORT, -1); return true;
                 case KeyEvent.KEYCODE_DPAD_LEFT:
@@ -257,8 +316,9 @@ public class MainActivity extends Activity {
             case ATC_VOL: atcVol = Math.max(0, Math.min(10, atcVol + d)); applyVolume(); break;
             case MUSIC:
                 station = wrap(station + d, stations.size());
-                if (playing) start(music, stations.get(station)[1]);
+                if (playing) startMusic();
                 break;
+            case TRACK: skipTrack(d); break;
             case MUSIC_VOL: musicVol = Math.max(0, Math.min(10, musicVol + d)); applyVolume(); break;
         }
         if (playing && (row == BUSIEST || row == AIRPORT || row == FEED || row == MUSIC)) setStatus("Tuning in…");
@@ -284,7 +344,7 @@ public class MainActivity extends Activity {
         content.setGravity(Gravity.CENTER_HORIZONTAL);
         root.addView(content, new FrameLayout.LayoutParams(-2, -2, Gravity.CENTER));
 
-        icaoText = text(110, TEXT, Typeface.BOLD);
+        icaoText = text(92, TEXT, Typeface.BOLD);
         icaoText.setLetterSpacing(0.08f);
         whereText = text(22, DIM, Typeface.NORMAL);
         clockText = text(26, AMBER, Typeface.NORMAL);
@@ -316,14 +376,16 @@ public class MainActivity extends Activity {
         card.setCornerRadius(dp(14));
         panel.setBackground(card);
         panel.setPadding(dp(10), dp(10), dp(10), dp(10));
-        String[] labels = {"Busiest now", "Airport", "Radio", "ATC volume", "Music", "Music volume"};
+        String[] labels = {"Busiest now", "Airport", "Radio", "ATC volume", "Music", "Track", "Music volume"};
         for (String label : labels) {
             LinearLayout r = new LinearLayout(this);
             r.setGravity(Gravity.CENTER_VERTICAL);
-            r.setPadding(dp(16), dp(8), dp(16), dp(8));
+            r.setPadding(dp(16), dp(6), dp(16), dp(6));
             TextView l = text(18, DIM, Typeface.NORMAL), v = text(18, TEXT, Typeface.NORMAL);
             l.setGravity(Gravity.START);
             v.setGravity(Gravity.START);
+            v.setSingleLine(true);
+            v.setEllipsize(TextUtils.TruncateAt.END);
             l.setText(label);
             r.addView(l, new LinearLayout.LayoutParams(dp(150), -2));
             r.addView(v);
@@ -331,14 +393,14 @@ public class MainActivity extends Activity {
             r.setFocusable(true);
             r.setOnFocusChangeListener((view, has) -> view.setBackground(has ? pill() : null));
             rows.add(r);
-            panel.addView(r, new LinearLayout.LayoutParams(dp(560), -2));
+            panel.addView(r, new LinearLayout.LayoutParams(dp(700), -2));
         }
         LinearLayout.LayoutParams pp = new LinearLayout.LayoutParams(-2, -2);
-        pp.topMargin = dp(24);
+        pp.topMargin = dp(18);
         content.addView(panel, pp);
 
         hintText = text(13, DIM, Typeface.NORMAL);
-        hintText.setText("▲▼ choose   ◀▶ change   OK play/pause   CH+/CH− airport");
+        hintText.setText("▲▼ choose   ◀▶ change   OK play/pause   CH+/CH− airport   ⏭ next track");
         hintText.setPadding(0, dp(14), 0, 0);
         content.addView(hintText);
 
@@ -357,6 +419,10 @@ public class MainActivity extends Activity {
         values.get(FEED).setText(row(a.feeds.get(feed)[0]));
         values.get(ATC_VOL).setText(row(bar(atcVol)));
         values.get(MUSIC).setText(row(stations.get(station)[0]));
+        // The track playing, with the credit its Creative Commons license asks for.
+        String[] t = currentTrack();
+        rows.get(TRACK).setVisibility(isPlaylist() ? View.VISIBLE : View.GONE);
+        values.get(TRACK).setText(t == null ? "‹  starts when playing  ›" : row(t[0] + " — " + t[1] + "  ·  " + t[2]));
         values.get(MUSIC_VOL).setText(row(bar(musicVol)));
         clock.run();
     }
@@ -459,7 +525,12 @@ public class MainActivity extends Activity {
             }
             JSONArray st = new JSONArray(readAsset("stations.json"));
             for (int i = 0; i < st.length(); i++)
-                stations.add(new String[]{st.getJSONObject(i).getString("name"), st.getJSONObject(i).getString("url")});
+                stations.add(new String[]{st.getJSONObject(i).getString("name"), st.getJSONObject(i).optString("url", null)});
+            JSONArray tr = new JSONArray(readAsset("tracks.json"));
+            for (int i = 0; i < tr.length(); i++) {
+                JSONObject o = tr.getJSONObject(i);
+                tracks.add(new String[]{o.getString("title"), o.getString("artist"), o.getString("license"), o.getString("url")});
+            }
         } catch (Exception e) {
             throw new IllegalStateException("assets", e);
         }

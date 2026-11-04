@@ -79,6 +79,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         else:
             super().do_GET()
 
+    def translate_path(self, path):
+        # For testing a playlist before it is uploaded (page opened with ?music=local): /music/<file> comes
+        # from music/build. Only there when running from the source folder.
+        if path.startswith("/music/"):
+            return os.path.join(HERE, "..", "music", "build", os.path.basename(path.split("?")[0]))
+        return super().translate_path(path)
+
     def log_message(self, *a):
         pass
 

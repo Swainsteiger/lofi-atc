@@ -16,3 +16,7 @@ __pycache__/
 # Windows installer build
 build-win/
 dist/
+
+# Soft lofi playlist build (uploaded to the music-v1 release instead)
+music/build/
+music/downloads/

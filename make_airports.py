@@ -2,9 +2,10 @@
   airports.json  airports with their LiveATC feeds, from feed lists saved from lofiatc.com/airport/<icao>.
                  Each feed plays from LiveATC's public address d.liveatc.net/<mount>, the one its .pls playlists
                  give media players.
-  stations.json  the ad-free music stations (STATIONS below).
-Both are also written as pc/data.js (browsers block reading files from disk) and copied into the TV app's assets.
-Usage: python make_airports.py <folder with <icao>.json files>"""
+  stations.json  the music: the Soft lofi playlist first (its tracks are music/tracks.json, built by
+                 music/build_music.py), then the ad-free radio stations (STATIONS below).
+All are also written as pc/data.js (browsers block reading files from disk) and copied into the TV app's assets.
+Usage: python make_airports.py [folder with <icao>.json files]   (without it, airports.json is kept as is)"""
 import glob
 import json
 import os
@@ -58,8 +59,9 @@ def rank(name):
     return 50
 
 
+here = os.path.dirname(os.path.abspath(__file__))
 airports = []
-for f in glob.glob(os.path.join(sys.argv[1], "*.json")):
+for f in glob.glob(os.path.join(sys.argv[1], "*.json")) if len(sys.argv) > 1 else []:
     try:
         a = json.load(open(f, encoding="utf-8"))
     except ValueError:
@@ -69,19 +71,27 @@ for f in glob.glob(os.path.join(sys.argv[1], "*.json")):
         continue
     feeds.sort(key=lambda x: (rank(x["name"]), x["name"]))
     airports.append({"icao": a["icao"], "name": a["name"], "city": a.get("city") or "", "feeds": feeds})
-airports.sort(key=lambda a: (FIRST.index(a["icao"]) if a["icao"] in FIRST else 99, a["icao"]))
-for a in airports:
-    a["tz"] = TZ.get(a["icao"], "")
-    a["lat"], a["lon"] = POS[a["icao"]]
-stations = [{"group": g, "name": n, "url": u} for g, n, u in STATIONS]
+if airports:
+    airports.sort(key=lambda a: (FIRST.index(a["icao"]) if a["icao"] in FIRST else 99, a["icao"]))
+    for a in airports:
+        a["tz"] = TZ.get(a["icao"], "")
+        a["lat"], a["lon"] = POS[a["icao"]]
+    json.dump(airports, open(os.path.join(here, "airports.json"), "w", encoding="utf-8"), indent=1)
+else:
+    airports = json.load(open(os.path.join(here, "airports.json"), encoding="utf-8"))
+# The Soft lofi playlist comes first: the default music, and the only one this project hosts itself.
+tracks = json.load(open(os.path.join(here, "music", "tracks.json"), encoding="utf-8"))
+stations = [{"group": "Soft lofi", "name": "Soft lofi (%d tracks, shuffled)" % len(tracks), "playlist": True}]
+stations += [{"group": g, "name": n, "url": u} for g, n, u in STATIONS]
 
-here = os.path.dirname(os.path.abspath(__file__))
-json.dump(airports, open(os.path.join(here, "airports.json"), "w", encoding="utf-8"), indent=1)
 json.dump(stations, open(os.path.join(here, "stations.json"), "w", encoding="utf-8"), indent=1)
 with open(os.path.join(here, "pc", "data.js"), "w", encoding="utf-8") as f:
     f.write("window.AIRPORTS = " + json.dumps(airports) + ";\n")
     f.write("window.STATIONS = " + json.dumps(stations) + ";\n")
+    f.write("window.TRACKS = " + json.dumps(tracks, ensure_ascii=False) + ";\n")
 assets = os.path.join(here, "tv", "app", "src", "main", "assets")
 for name in ("airports.json", "stations.json"):
     shutil.copy(os.path.join(here, name), assets)
-print(len(airports), "airports,", sum(len(a["feeds"]) for a in airports), "feeds,", len(stations), "stations")
+shutil.copy(os.path.join(here, "music", "tracks.json"), assets)
+print(len(airports), "airports,", sum(len(a["feeds"]) for a in airports), "feeds,", len(stations), "stations,",
+      len(tracks), "playlist tracks")

@@ -1,5 +1,10 @@
 [
  {
+  "group": "Soft lofi",
+  "name": "Soft lofi (69 tracks, shuffled)",
+  "playlist": true
+ },
+ {
   "group": "Lofi",
   "name": "Radio Caprice \u00b7 Lo-Fi",
   "url": "http://79.111.14.76:8002/lo-fi"
