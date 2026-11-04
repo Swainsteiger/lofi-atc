@@ -75,4 +75,5 @@ afterwards. `make_icon.py` redraws the icon and TV banner (needs Pillow).
   commercial-free. Support them if you enjoy them.
 - Font: [Outfit](https://github.com/Outfitio/Outfit-Fonts), SIL Open Font License 1.1.
 
-Code: MIT, see `LICENSE`.
+Code: MIT, see `LICENSE`. The Outfit font files are not covered by it; they are under the SIL Open Font
+License 1.1, see `FONT-LICENSE-OFL.txt`.
