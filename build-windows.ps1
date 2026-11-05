@@ -22,6 +22,9 @@ if ($LASTEXITCODE -ne 0) { throw 'PyInstaller failed' }
 $iscc = @("$env:LOCALAPPDATA\Programs\Inno Setup 6\ISCC.exe", "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe") |
     Where-Object { Test-Path $_ } | Select-Object -First 1
 if (-not $iscc) { throw 'Inno Setup 6 not found (see the top of this script)' }
-& $iscc /Q windows\installer.iss
+# One version for the page and the installer: the VERSION line in pc/index.html.
+$version = [regex]::Match((Get-Content pc\index.html -Raw), 'const VERSION = "([^"]+)"').Groups[1].Value
+if (-not $version) { throw 'VERSION not found in pc/index.html' }
+& $iscc /Q "/DAppVersion=$version" windows\installer.iss
 if ($LASTEXITCODE -ne 0) { throw 'Inno Setup failed' }
 Get-Item dist\Lofi-ATC-Setup.exe | Select-Object Name, @{n='MB'; e={[math]::Round($_.Length / 1MB, 1)}}

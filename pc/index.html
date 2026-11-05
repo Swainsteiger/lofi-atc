@@ -40,6 +40,14 @@ input[type=range] { accent-color: var(--accent); }
 .keys { margin-top: 18px; color: var(--dim); font-size: 11px; opacity: .7; }
 .credit { position: fixed; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--dim); opacity: .6; z-index: 1; }
 .credit a { color: inherit; }
+.version { position: fixed; bottom: 8px; right: 12px; z-index: 2; background: none; border: 0; color: var(--dim);
+  font: inherit; font-size: 11px; opacity: .7; cursor: pointer; padding: 2px 4px; }
+.version:hover { opacity: 1; color: var(--text); }
+.diag { position: fixed; right: 12px; bottom: 32px; z-index: 3; width: min(460px, calc(100% - 24px));
+  background: rgba(11,16,32,.96); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.diag pre { margin: 0 0 8px; white-space: pre-wrap; font: inherit; font-size: 12px; line-height: 1.6; color: var(--text); }
+.diag button { background: none; border: 1px solid var(--line); color: var(--text); border-radius: 8px; padding: 3px 10px;
+  font: inherit; font-size: 12px; cursor: pointer; }
 .busy { margin-top: 10px; font-size: 13px; color: var(--dim); min-height: 18px; }
 .busy button { margin-left: 8px; background: none; border: 1px solid var(--accent); color: var(--accent); border-radius: 999px;
   padding: 3px 10px; font: inherit; font-size: 12px; cursor: pointer; }
@@ -78,15 +86,21 @@ input[type=range] { accent-color: var(--accent); }
   </div>
 </main>
 <div class="credit">ATC audio from <a href="https://www.liveatc.net" target="_blank" rel="noopener">LiveATC.net</a> (personal listening) · Soft lofi tracks under Creative Commons, <a href="https://github.com/Swainsteiger/lofi-atc/blob/main/MUSIC-CREDITS.md" target="_blank" rel="noopener">music credits</a> · inspired by lofiatc.com</div>
+<button class="version" id="version" title="Version — tap for radio diagnostics"></button>
+<div class="diag" id="diag" hidden><pre id="diagText"></pre><button id="diagCopy">Copy</button></div>
 <script src="data.js"></script>
 <script>
 const STATIONS = window.STATIONS; // the Soft lofi playlist, then ad-free stations; see make_airports.py
 const TRACKS = window.TRACKS || []; // Creative Commons tracks, see MUSIC-CREDITS.md
 const A = window.AIRPORTS;
 const $ = id => document.getElementById(id);
-const atc = new Audio(), music = new Audio();
-atc.preload = music.preload = "none";
+const VERSION = "1.1.2"; // shown on screen; build-windows.ps1 reads it for the installer
+const atc = new Audio(), music = new Audio(), atcPlain = new Audio();
+atc.preload = music.preload = atcPlain.preload = "none";
 atc.crossOrigin = "anonymous"; // LiveATC allows it; lets the green dot follow the voices
+// How the radio is doing, for the diagnostics panel. "stream" pulls it in quickly through the audio route that
+// drives the talk light; "plain" is the backup: an ordinary player, slower to start, used when that fails.
+const radio = { mode: "stream", http: 0, bytes: 0, error: "", fails: 0, why: "" };
 
 function load() { try { return JSON.parse(localStorage.getItem("lofiatc") || "{}"); } catch (e) { return {}; } }
 function save() {
@@ -133,6 +147,7 @@ function start(el, url) {
   if (el._abort) el._abort.abort();
   if (el === atc && window.MediaSource && MediaSource.isTypeSupported("audio/mpeg")) feed(el, url);
   else el.src = url;
+  if (el === atc) { radio.started = Date.now(); radio.bytes = 0; radio.http = 0; }
   // Chrome may refuse sound before the first click; then wait for the play button.
   el.play().catch(e => { if (e.name === "NotAllowedError" && playing) { pause(); setStatus("Press play"); } });
 }
@@ -154,12 +169,14 @@ function feed(el, url) {
     sb.addEventListener("updateend", pump);
     try {
       const r = await fetch(url, { signal: ctl.signal, cache: "no-store" });
+      radio.http = r.status;
       if (!r.ok) throw new Error(r.status);
       const rd = r.body.getReader();
       for (;;) {
         const { value, done } = await rd.read();
         if (done) break;
         offAir = 0;
+        radio.bytes += value.length; radio.fails = 0;
         queue.push(value); pump();
         // Stay near live: if playback fell far behind (tab asleep), jump forward.
         const b = el.buffered;
@@ -168,10 +185,32 @@ function feed(el, url) {
       throw new Error("ended");
     } catch (e) {
       if (ctl.signal.aborted) return;
-      if (e.message === "404") skipFeed(); else retry(el, "atc");
+      radio.error = e.message || String(e);
+      if (e.message === "404") skipFeed();
+      // Twice without a single byte (blocked by a firewall or antivirus, say): use the backup player.
+      else if (++radio.fails >= 2 && !radio.bytes) usePlain("couldn't stream: " + radio.error);
+      else retry(el, "atc");
     }
   }, { once: true });
 }
+// The radio, in whichever mode it's in.
+function startRadio() {
+  if (radio.mode === "plain") { atcPlain.src = feedUrl(); atcPlain.play().catch(() => {}); radio.started = Date.now(); }
+  else start(atc, feedUrl());
+}
+function stopRadio() {
+  if (atc._abort) atc._abort.abort();
+  for (const el of [atc, atcPlain]) { el.pause(); el.removeAttribute("src"); }
+}
+function usePlain(why) {
+  if (radio.mode === "plain") return;
+  radio.mode = "plain"; radio.why = why;
+  stopRadio();
+  if (playing) { setStatus("Radio: switching to the backup player (starts in ~20 s)…"); startRadio(); }
+}
+atcPlain.addEventListener("playing", () => setStatus(`${cur().feeds[$("feed").value].name} · ${STATIONS[$("station").value].name}`));
+atcPlain.addEventListener("error", () => { radio.error = "backup player error " + (atcPlain.error && atcPlain.error.code); retry(atcPlain, "atc"); });
+atcPlain.addEventListener("ended", () => retry(atcPlain, "atc"));
 // A channel LiveATC has taken off air answers 404: move on to the airport's next channel by itself.
 let offAir = 0;
 function skipFeed() {
@@ -180,13 +219,13 @@ function skipFeed() {
   f.value = (Number(f.value) + 1) % cur().feeds.length;
   save();
   setStatus("Channel off air, trying " + cur().feeds[f.value].name + "…");
-  start(atc, feedUrl());
+  startRadio();
 }
 function retry(el, which) {
   if (!playing) return;
   setStatus(which === "atc" ? "Radio reconnecting…" : "Music reconnecting…");
   clearTimeout(el._t);
-  el._t = setTimeout(() => playing && start(el, which === "atc" ? feedUrl() : stationUrl()), 4000);
+  el._t = setTimeout(() => { if (playing) which === "atc" ? startRadio() : start(el, stationUrl()); }, 4000);
 }
 const feedUrl = () => cur().feeds[$("feed").value].url;
 
@@ -240,20 +279,20 @@ $("next").onclick = () => skip(1);
 });
 function setStatus(t) { $("status").textContent = t; }
 
-function vol() { atc.volume = $("atcVol").value / 100; music.volume = $("musicVol").value / 100; save(); }
+function vol() { atc.volume = atcPlain.volume = $("atcVol").value / 100; music.volume = $("musicVol").value / 100; save(); }
 function play() {
   playing = true; vol(); setStatus("Tuning in…");
-  start(atc, feedUrl()); start(music, stationUrl());
+  startRadio(); start(music, stationUrl());
   $("play").textContent = "❚❚"; $("play").setAttribute("aria-label", "Pause");
   meter();
 }
 function pause() {
-  playing = false; if (atc._abort) atc._abort.abort(); atc.pause(); music.pause(); atc.removeAttribute("src"); music.removeAttribute("src");
+  playing = false; stopRadio(); music.pause(); music.removeAttribute("src");
   $("play").textContent = "▶"; $("play").setAttribute("aria-label", "Play"); setStatus("Paused"); $("dot").classList.remove("on");
 }
 $("play").onclick = () => playing ? pause() : play();
-$("airport").onchange = () => { offAir = 0; fillFeeds(); showBusy(); save(); if (playing) start(atc, feedUrl()); };
-$("feed").onchange = () => { offAir = 0; save(); if (playing) start(atc, feedUrl()); };
+$("airport").onchange = () => { offAir = 0; fillFeeds(); showBusy(); save(); if (playing) startRadio(); };
+$("feed").onchange = () => { offAir = 0; save(); if (playing) startRadio(); };
 $("station").onchange = () => { save(); showTrack(); if (playing) start(music, stationUrl()); };
 $("atcVol").oninput = $("musicVol").oninput = vol;
 
@@ -288,16 +327,60 @@ function meter() {
     ctx.createMediaElementSource(atc).connect(analyser); analyser.connect(ctx.destination);
   } catch (e) { analyser = null; }
   (function loop() {
-    let on = playing && !atc.paused;
-    if (on && analyser) {
-      analyser.getByteTimeDomainData(buf);
-      let peak = 0; for (const v of buf) peak = Math.max(peak, Math.abs(v - 128));
-      on = peak > 6;
+    let on;
+    if (radio.mode === "plain") on = playing && !atcPlain.paused && atcPlain.readyState > 2; // lit while it plays
+    else {
+      on = playing && !atc.paused;
+      if (on && analyser) {
+        analyser.getByteTimeDomainData(buf);
+        let peak = 0; for (const v of buf) peak = Math.max(peak, Math.abs(v - 128));
+        on = peak > 6;
+      }
     }
     $("dot").classList.toggle("on", on);
     requestAnimationFrame(loop);
   })();
 }
+// Watchdog, on a timer (browsers pause animation loops in hidden windows): audio arriving but not being heard
+// (the route won't wake, or the browser can't play the pieces) → the backup player.
+setInterval(() => {
+  if (radio.mode !== "stream" || !playing) return;
+  const age = Date.now() - (radio.started || Date.now());
+  if (age < 8000 || radio.bytes < 20000) return;
+  if (ctx && ctx.state !== "running") usePlain("audio route stayed " + ctx.state);
+  else if (atc.currentTime === 0) usePlain("stream arrived but didn't play");
+}, 1000);
+
+// ---- version and diagnostics: tap the version (bottom right) to see what the radio is doing ----
+function browserName() {
+  const ua = navigator.userAgent, m = ua.match(/Edg\/([\d.]+)/) ? ["Edge", ua.match(/Edg\/([\d]+)/)[1]]
+    : ua.match(/Chrome\/([\d]+)/) ? ["Chrome", ua.match(/Chrome\/([\d]+)/)[1]]
+    : ua.match(/Firefox\/([\d]+)/) ? ["Firefox", ua.match(/Firefox\/([\d]+)/)[1]] : ["browser", ""];
+  return m.join(" ");
+}
+function diagText() {
+  const el = radio.mode === "plain" ? atcPlain : atc;
+  return [
+    "Lofi ATC " + VERSION + " · " + browserName(),
+    "Radio: " + cur().icao + " · " + cur().feeds[$("feed").value].name,
+    "Mode: " + (radio.mode === "plain" ? "backup player (" + radio.why + ")" : "fast stream"),
+    "LiveATC answer: " + (radio.http || "–") + " · received " + Math.round(radio.bytes / 1024) + " KB",
+    "Player: " + (playing ? (el.paused ? "paused" : "playing") : "stopped") + " · at " + el.currentTime.toFixed(1)
+      + " s · ready " + el.readyState + (el.error ? " · error " + el.error.code : ""),
+    "Audio route: " + (radio.mode === "plain" ? "not used" : ctx ? ctx.state : "not set up")
+      + " · talk light: " + ($("dot").classList.contains("on") ? "on" : "off"),
+    "Last radio error: " + (radio.error || "none"),
+    "Music: " + (music.paused ? "paused" : "playing") + " · at " + music.currentTime.toFixed(0) + " s",
+  ].join("\n");
+}
+$("version").textContent = "v" + VERSION;
+$("version").onclick = () => {
+  const d = $("diag");
+  d.hidden = !d.hidden;
+  if (!d.hidden) (function show() { if (d.hidden) return; $("diagText").textContent = diagText(); setTimeout(show, 1000); })();
+};
+$("diagCopy").onclick = () => navigator.clipboard && navigator.clipboard.writeText(diagText()).then(() => {
+  $("diagCopy").textContent = "Copied"; setTimeout(() => $("diagCopy").textContent = "Copy", 1500); });
 
 // Twinkling night sky with the odd plane crossing it.
 const cv = $("stars"), g = cv.getContext("2d");
