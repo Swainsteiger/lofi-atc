@@ -85,7 +85,7 @@ input[type=range] { accent-color: var(--accent); }
     <div class="keys">Space play/pause · ←/→ airport · ↑/↓ radio channel · M music · [ ] track · B busiest airport</div>
   </div>
 </main>
-<div class="credit">ATC audio from <a href="https://www.liveatc.net" target="_blank" rel="noopener">LiveATC.net</a> (personal listening) · Soft lofi tracks under Creative Commons, <a href="https://github.com/Swainsteiger/lofi-atc/blob/main/MUSIC-CREDITS.md" target="_blank" rel="noopener">music credits</a> · inspired by lofiatc.com</div>
+<div class="credit">Made by <a href="https://github.com/Swainsteiger" target="_blank" rel="noopener">Swainsteiger</a> · ATC audio from <a href="https://www.liveatc.net" target="_blank" rel="noopener">LiveATC.net</a> (personal listening) · Soft lofi tracks under Creative Commons, <a href="https://github.com/Swainsteiger/lofi-atc/blob/main/MUSIC-CREDITS.md" target="_blank" rel="noopener">music credits</a> · inspired by lofiatc.com</div>
 <button class="version" id="version" title="Version — tap for radio diagnostics"></button>
 <div class="diag" id="diag" hidden><pre id="diagText"></pre><button id="diagCopy">Copy</button></div>
 <script src="data.js"></script>
@@ -361,7 +361,7 @@ function browserName() {
 function diagText() {
   const el = radio.mode === "plain" ? atcPlain : atc;
   return [
-    "Lofi ATC " + VERSION + " · " + browserName(),
+    "Lofi ATC " + VERSION + " by Swainsteiger · " + browserName(),
     "Radio: " + cur().icao + " · " + cur().feeds[$("feed").value].name,
     "Mode: " + (radio.mode === "plain" ? "backup player (" + radio.why + ")" : "fast stream"),
     "LiveATC answer: " + (radio.http || "–") + " · received " + Math.round(radio.bytes / 1024) + " KB",
