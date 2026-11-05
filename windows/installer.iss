@@ -45,3 +45,16 @@ Filename: "{app}\LofiATC.exe"; Description: "Start Lofi ATC now"; Flags: nowait 
 [UninstallRun]
 ; Stop it if it is running, so its files can be removed.
 Filename: "{sys}\taskkill.exe"; Parameters: "/IM LofiATC.exe /F"; Flags: runhidden; RunOnceId: "StopLofiATC"
+
+[Code]
+// The helper keeps running in the background for 10 minutes after its window closes, and it has no window
+// for the installer's usual "close applications" step. Left running, it keeps the old files in use and keeps
+// serving the old page, so an update seems not to take: stop it first.
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+var
+  Code: Integer;
+begin
+  Exec(ExpandConstant('{sys}\taskkill.exe'), '/IM LofiATC.exe /F', '', SW_HIDE, ewWaitUntilTerminated, Code);
+  Sleep(500);
+  Result := '';
+end;
