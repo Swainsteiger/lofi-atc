@@ -2,7 +2,7 @@
 ; pc\serve.pyw with Python included as build-win\dist\LofiATC. Installs for the current user only, so it
 ; needs no administrator rights; adds Start menu and desktop shortcuts and an uninstaller.
 
-#define AppVersion "1.1.0"
+#define AppVersion "1.1.1"
 
 [Setup]
 AppId={{6E2B7D4A-3C1F-4A8E-9B5D-2F7C1E0A9D34}

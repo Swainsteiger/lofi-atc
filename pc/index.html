@@ -257,6 +257,10 @@ $("feed").onchange = () => { offAir = 0; save(); if (playing) start(atc, feedUrl
 $("station").onchange = () => { save(); showTrack(); if (playing) start(music, stationUrl()); };
 $("atcVol").oninput = $("musicVol").oninput = vol;
 
+// Any click or key also wakes a suspended radio route (browsers only allow it right after one).
+for (const ev of ["pointerdown", "keydown"])
+  addEventListener(ev, () => { if (ctx && ctx.state !== "running") ctx.resume().catch(() => {}); }, true);
+
 addEventListener("keydown", e => {
   if (e.target.tagName === "SELECT" && !e.code.startsWith("Space")) return;
   const step = (id, d, n) => { const s = $(id); s.value = (Number(s.value) + d + n) % n; s.onchange(); };
@@ -275,7 +279,9 @@ addEventListener("keydown", e => {
 // if it does not, the dot simply stays lit while the radio plays.
 let ctx, analyser, buf;
 function meter() {
-  if (ctx) return;
+  // The radio plays through this audio route. A route made before the first click (the page trying to start
+  // on its own) begins suspended, which silences the radio while the music plays: wake it on every play.
+  if (ctx) { if (ctx.state !== "running") ctx.resume().catch(() => {}); return; }
   try {
     ctx = new AudioContext();
     analyser = ctx.createAnalyser(); analyser.fftSize = 512; buf = new Uint8Array(analyser.fftSize);

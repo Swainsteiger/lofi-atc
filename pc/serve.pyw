@@ -79,6 +79,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         else:
             super().do_GET()
 
+    def end_headers(self):
+        # Browsers keep old copies of the page otherwise, so an updated install could still show the old version.
+        self.send_header("Cache-Control", "no-cache")
+        super().end_headers()
+
     def translate_path(self, path):
         # For testing a playlist before it is uploaded (page opened with ?music=local): /music/<file> comes
         # from music/build. Only there when running from the source folder.
